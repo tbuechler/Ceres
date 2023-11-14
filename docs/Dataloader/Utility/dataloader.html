@@ -1,0 +1,422 @@
+<!DOCTYPE html><html><head>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            font-size: 1.5em;
+            line-height: 1.6;
+            font-weight: 400;
+            font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #777;
+            background: #ecf0f3;
+        }
+        #section_container {
+            position: relative;
+            background: #ecf0f3;
+        }
+        #background {
+            background: #ebedef;
+            border-left: 1px solid #e2e2eb;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #background {
+                display: block;
+            }
+        }
+        a {
+            color: #666;
+        }
+        a:visited {
+            color: #777;
+        }
+        a.parent {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        a.parent:after {
+            content: ">";
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    </style>
+    
+    <style>
+        div.section:hover {
+            background: #f8fafb;
+        }
+        div.section {
+            position: relative;
+        }
+        div.section:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+        div.section {
+            border-top: 1px solid #e2e2eb;
+        }
+        div.footer {
+            margin-top: 25px;
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+        }
+        div.footer a {
+            display: inline-block;
+            margin: 8px;
+            font-size: 1.3rem;
+        }
+        div.footer {
+            background: #d5dbe0;
+        }
+    </style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+        <style>
+        div.section:hover div.code {
+            background: #f8fafb;
+        }
+        div.section div.code {
+            background: #ebedef;
+              padding: 14px 8px 16px 15px;
+              vertical-align: top;
+        }
+        @media (min-width: 768px) {
+            div.section div.code {
+                margin-left: 40%;
+            }
+        }
+        </style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/mathtex-script-type.min.js" defer></script>
+        <style>
+            div.section div.doc {
+                box-sizing: border-box;
+                padding: 10px 8px 1px 8px;
+                vertical-align: top;
+                text-align: left;
+                word-break: break-all;
+            }
+        @media (min-width: 768px) {
+            div.section div.doc {
+                float: left;
+                width: 40%;
+                min-height: 5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            div.section div.doc {
+                padding: 10px 25px 1px 50px;
+            }
+        }
+        div.section div.doc img {
+            max-width: 100%;
+            transition:transform 0.25s ease;
+        }
+        img:hover {
+            -webkit-transform:scale(1.75);
+            transform:scale(1.75);
+        }        
+        </style>
+        </head><body><div id="section_container"><div id="background"></div>
+    <div class="section" id="0">
+        
+        <div class="doc">
+            <p><a class="parent" href="../../index.html">Home</a><a class="parent" href="../index.html">Dataloader</a><a class="parent" href="index.html">Utility</a></p>
+        </div>
+        
+    </div>
+    
+    <div class="section" id="1">
+        
+        <div class="doc">
+            <p><br><br><br></p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">omegaconf</span>
+
+<span class="kn">from</span> <span class="nn">omegaconf</span> <span class="kn">import</span> <span class="n">DictConfig</span>
+<span class="kn">from</span> <span class="nn">source.Logger.logger</span> <span class="kn">import</span> <span class="n">log_error</span>
+<span class="kn">from</span> <span class="nn">source.Dataloader.datahandler</span> <span class="kn">import</span> <span class="n">DataHandler</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="2">
+        
+        <div class="doc">
+            <p>Creates a DataLoader instance from a dataset object.</p>
+<p>Args:</p>
+<ul>
+<li><code>cfg (omegaconf.DictConfig)</code>:<ul>
+<li>Configuration items for the dataset [subset of the whole configuration object].</li>
+</ul>
+</li>
+<li><code>ds (DataHandler)</code>: <ul>
+<li>Instantiated dataset object.</li>
+</ul>
+</li>
+<li><code>indices (list[int])</code>: <ul>
+<li>If the dataset was splitted the corresponding list of indices for the DataLoader must be given as well. No effect if two different datasets are used.</li>
+</ul>
+</li>
+<li><code>train (bool)</code>: <ul>
+<li>Indicates whether the DataLoader is used for training oder evaluation/validation. This is unfortunately necessary to catch missing configuration entries, since it is not mandatory to define dataset_valid but dataset needs to be defined.</li>
+</ul>
+</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li>dl (DataLoader): <ul>
+<li>Created dataloader instance.</li>
+</ul>
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ds2dl</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">,</span> <span class="n">ds</span><span class="p">:</span> <span class="n">DataHandler</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">train</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="3">
+        
+        <div class="doc">
+            <p>This part of code is meant to select the correct batch size.  The following combinations can happen:  1. The dataloader is meant for training. Then it is expected to define <code>batch_size</code> in your configuration file. Otherwise it will throw an error and terminate. 2. The dataloader is meant for validation/evaluation and the dataset used in this call was split before, so the dataset is used for training <strong>and</strong> validation. This means that <code>indices</code> is not empty. In this case it will try to get the batch size by trying to access <code>cfg.batch_size_valid</code> (Because <code>batch_size</code> should be used for training if Dataset is used for training and validation). IF this entry was not defined in the configuration file, Hydra will throw an error and the used batch size is set to 1. 3. The dataloader is meant for validation/evaluation and the dataset used in this call is a separate instance compared to the dataset used for training - so no split has been performed before. This leads to <code>indices</code> being <code>None</code>. If this is the case, it will uses <code>batch_size</code> defined in your <code>dataset_validation</code> part of your configuration file. If this entry was not defined for your validation set, it will set the batch size to 1.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">try</span><span class="p">:</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">batch_size</span> 
+        <span class="k">if</span> <span class="n">indices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">train</span><span class="p">:</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">batch_size_valid</span>
+    <span class="k">except</span> <span class="n">omegaconf</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">ConfigAttributeError</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">train</span><span class="p">:</span>
+            <span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;[DataLoader] No batch_size defined in config file for training set </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="4">
+        
+        <div class="doc">
+            <p>To enable multi-process dataloading define num_worker in your configuration dataset section. By default this value is set to four times of your number of GPUs in your system. </p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">try</span><span class="p">:</span>
+        <span class="n">num_worker</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">num_worker</span>
+    <span class="k">except</span> <span class="n">omegaconf</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">ConfigAttributeError</span><span class="p">:</span>
+        <span class="n">num_worker</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="5">
+        
+        <div class="doc">
+            <p>If you have implemented a custom collate_fn in your dataset (custom DataHandler), it will be used in this case. If not, the default process by PyTorch is being used.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">try</span><span class="p">:</span>
+        <span class="n">collate_fn</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">collate_fn</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="n">collate_fn</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="6">
+        
+        <div class="doc">
+            <p>Definition of return value for each dataloader instance.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="n">dl</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
+        <span class="n">dataset</span>         <span class="o">=</span> <span class="n">ds</span><span class="p">,</span>
+        <span class="n">batch_size</span>      <span class="o">=</span> <span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">pin_memory</span>      <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">drop_last</span>       <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">shuffle</span>         <span class="o">=</span> <span class="n">shuffle</span><span class="p">,</span>
+        <span class="n">num_workers</span>     <span class="o">=</span> <span class="n">num_worker</span><span class="p">,</span>
+        <span class="n">sampler</span>         <span class="o">=</span> <span class="n">sampler</span><span class="p">,</span>
+        <span class="n">collate_fn</span>      <span class="o">=</span> <span class="n">collate_fn</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">dl</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="7">
+        
+        <div class="doc">
+            <p>Method to call to create dataloader instances from training and validation dataset.</p>
+<p>Args:</p>
+<ul>
+<li><code>cfg (omegaconf.DictConfig)</code>:<ul>
+<li>Configuration instance for this experiment (no subset).</li>
+</ul>
+</li>
+<li><code>ds1 (DataHandler)</code>: <ul>
+<li>Instantiated first dataset object. Either used for training and validation or only for training.</li>
+</ul>
+</li>
+<li><code>ds2 (DataHandler)</code>: <ul>
+<li>Instantiated second dataset object. If defined, it is used for validation.</li>
+</ul>
+</li>
+<li><code>use_multidataset (bool)</code>:<ul>
+<li>Indicates whether a multi dataset is used in this run.</li>
+</ul>
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_dataloader</span><span class="p">(</span><span class="n">cfg</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">,</span> <span class="n">ds1</span><span class="p">:</span> <span class="n">DataHandler</span><span class="p">,</span> <span class="n">ds2</span><span class="p">:</span> <span class="n">DataHandler</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_multidataset</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="8">
+        
+        <div class="doc">
+            <p>Distinguish between two cases:  1. The second dataset <code>ds2</code> is not given and thus <code>None</code>. In this case <code>ds1</code> must be splitted before and two dataloader instances are created with the same dataset instance but considering the indices lists. 2. The second dataset <code>ds2</code> is given. In this case two dataloader instaces are created by using <code>ds1</code> for the training set and <code>ds2</code> for the validation set.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="n">ds_str</span> <span class="o">=</span> <span class="s2">&quot;dataset&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">use_multidataset</span> <span class="k">else</span> <span class="s2">&quot;multi_dataset&quot;</span>
+    <span class="k">if</span> <span class="n">ds2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dl1</span> <span class="o">=</span> <span class="n">ds2dl</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="n">ds_str</span><span class="p">],</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds1</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">ds1</span><span class="o">.</span><span class="n">indices_train</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">dl2</span> <span class="o">=</span> <span class="n">ds2dl</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="n">ds_str</span><span class="p">],</span> <span class="n">ds</span><span class="o">=</span><span class="n">ds1</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">ds1</span><span class="o">.</span><span class="n">indices_valid</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dl1</span> <span class="o">=</span> <span class="n">ds2dl</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">cfg</span><span class="p">[</span><span class="n">ds_str</span><span class="p">],</span>        <span class="n">ds</span><span class="o">=</span><span class="n">ds1</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">dl2</span> <span class="o">=</span> <span class="n">ds2dl</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">dataset_valid</span><span class="p">,</span>  <span class="n">ds</span><span class="o">=</span><span class="n">ds2</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dl1</span><span class="p">,</span> <span class="n">dl2</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <a href="mailto:thomas.buechler@cariad.technology">Contact</a>
+    </div>
+    </div></body></html>
+    

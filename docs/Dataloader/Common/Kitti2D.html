@@ -1,0 +1,662 @@
+<!DOCTYPE html><html><head>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            font-size: 1.5em;
+            line-height: 1.6;
+            font-weight: 400;
+            font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #777;
+            background: #ecf0f3;
+        }
+        #section_container {
+            position: relative;
+            background: #ecf0f3;
+        }
+        #background {
+            background: #ebedef;
+            border-left: 1px solid #e2e2eb;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #background {
+                display: block;
+            }
+        }
+        a {
+            color: #666;
+        }
+        a:visited {
+            color: #777;
+        }
+        a.parent {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        a.parent:after {
+            content: ">";
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    </style>
+    
+    <style>
+        div.section:hover {
+            background: #f8fafb;
+        }
+        div.section {
+            position: relative;
+        }
+        div.section:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+        div.section {
+            border-top: 1px solid #e2e2eb;
+        }
+        div.footer {
+            margin-top: 25px;
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+        }
+        div.footer a {
+            display: inline-block;
+            margin: 8px;
+            font-size: 1.3rem;
+        }
+        div.footer {
+            background: #d5dbe0;
+        }
+    </style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+        <style>
+        div.section:hover div.code {
+            background: #f8fafb;
+        }
+        div.section div.code {
+            background: #ebedef;
+              padding: 14px 8px 16px 15px;
+              vertical-align: top;
+        }
+        @media (min-width: 768px) {
+            div.section div.code {
+                margin-left: 40%;
+            }
+        }
+        </style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/mathtex-script-type.min.js" defer></script>
+        <style>
+            div.section div.doc {
+                box-sizing: border-box;
+                padding: 10px 8px 1px 8px;
+                vertical-align: top;
+                text-align: left;
+                word-break: break-all;
+            }
+        @media (min-width: 768px) {
+            div.section div.doc {
+                float: left;
+                width: 40%;
+                min-height: 5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            div.section div.doc {
+                padding: 10px 25px 1px 50px;
+            }
+        }
+        div.section div.doc img {
+            max-width: 100%;
+            transition:transform 0.25s ease;
+        }
+        img:hover {
+            -webkit-transform:scale(1.75);
+            transform:scale(1.75);
+        }        
+        </style>
+        </head><body><div id="section_container"><div id="background"></div>
+    <div class="section" id="0">
+        
+        <div class="doc">
+            <p><a class="parent" href="../../index.html">Home</a><a class="parent" href="../index.html">Dataloader</a><a class="parent" href="index.html">Common</a></p>
+        </div>
+        
+    </div>
+    
+    <div class="section" id="1">
+        
+        <div class="doc">
+            <p><br><br><br><br></p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span>
+    <span class="p">))</span>
+    <span class="kn">from</span> <span class="nn">source.Dataloader.Utility.dataloader</span> <span class="kn">import</span> <span class="n">create_dataloader</span>
+    <span class="kn">from</span> <span class="nn">source.Utility.ObjectDetection2D.bounding_box2D</span> <span class="kn">import</span> <span class="n">BBox2D</span><span class="p">,</span> <span class="n">visualize</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">omegaconf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">T</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">source.Utility.image</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">torchvision.transforms</span> <span class="kn">import</span> <span class="n">transforms</span>
+<span class="kn">from</span> <span class="nn">source.Utility.augmentation</span> <span class="kn">import</span> <span class="n">AUG_TYPE</span>
+<span class="kn">from</span> <span class="nn">source.Dataloader.datahandler</span> <span class="kn">import</span> <span class="n">DataHandler</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="2">
+        
+        <div class="doc">
+            <h1>Kitti Dataset</h1>
+<p>Dataset for the Kitti dataset (https://www.cvlibs.net/datasets/kitti/).
+Currently it does only support the task of 2D Object Detection and thus
+will only provide an image and the corresponding annotation file for the
+classified objects.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Kitti2D_ds</span><span class="p">(</span><span class="n">DataHandler</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="3">
+        
+        <div class="doc">
+            <pre><code>
+</code></pre>
+<p>Args:</p>
+<ul>
+<li><code>cfg (omegaconf.DictConfig)</code>:<ul>
+<li>Hydra based configuration dictionary based on the given configuration .yaml file. <strong>Only the subset cfg object for the dataset is available at this point.</strong></li>
+</ul>
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">omegaconf</span><span class="o">.</span><span class="n">DictConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="4">
+        
+        <div class="doc">
+            <p>List of classes for the classification task that are supported by the Kitti dataset.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;Car&#39;</span><span class="p">,</span> <span class="s1">&#39;Van&#39;</span><span class="p">,</span> <span class="s1">&#39;Truck&#39;</span><span class="p">,</span> <span class="s1">&#39;Pedestrian&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;Person_sitting&#39;</span><span class="p">,</span> <span class="s1">&#39;Cyclist&#39;</span><span class="p">,</span> <span class="s1">&#39;Tram&#39;</span>
+        <span class="p">]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="5">
+        
+        <div class="doc">
+            <p>Creates a sample from the dataset for a specific pair of data 
+using an index. It will load the image using PIL and the annotation file, apply data augmentation and convert sample entries into PyTorch Tensors.</p>
+<p>Returns:
+    Dictionary sample in form of {'img' : img, 'annotation' : annotation}.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="6">
+        
+        <div class="doc">
+            <p>Loading an image using PIL.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_load_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="7">
+        
+        <div class="doc">
+            <p>Loads the annotation file and returns list of annotations. The annotations are in form of 
+<script type="math/tex; mode=display">(x_l, y_t, x_r, y_b, class).</script>
+</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_load_annotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="8">
+        
+        <div class="doc">
+            <p>Searches in a predefined path for the kitti dataset and collect
+all information. It requires the standard kitti folder structure.</p>
+<p>The list <code>filenames</code> contains tuples with two possible elements:</p>
+<pre><code>* img: Path to RGB image file
+* anno: Path to the annotation file
+</code></pre>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">search_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="9">
+        
+        <div class="doc">
+            <p>Method to apply data augmentation on a given sample.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">augmentation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="10">
+        
+        <div class="doc">
+            <p>Converts the incoming PIL image and numpy array of the image and annotation into PyTorch tensors.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_toTensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="11">
+        
+        <div class="doc">
+            <p>This custom overload of the collate_fn is necessary and must be passed to the Dataloader to handle variable size of bounding boxes per image in one batch.</p>
+<p>Args:</p>
+<ul>
+<li><code>samples (list[dict])</code>:<ul>
+<li>List of samples (elements of one batch) containing the image and the corresponding annotation information of it.</li>
+</ul>
+</li>
+</ul>
+<p>The collate_fn receives a list of tuples if your <strong>getitem</strong> function from a Dataset subclass returns a tuple, or just a normal list if your Dataset subclass returns only one element. Its main objective is to create your batch without spending much time implementing it manually. Try to see it as a glue that you specify the way examples stick together in a batch. If you don’t use it, PyTorch only put batch_size examples together as you would using torch.stack (not exactly it, but it is simple like that).</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">collate_fn</span><span class="p">(</span><span class="n">samples</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="12">
+        
+        <div class="doc">
+            <p>Transformation of the shape of the images <script type="math/tex">[(C, H, W), ...., (C, H, W)] \rightarrow (B, C, H, W)</script>
+</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">imgs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">imgs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="13">
+        
+        <div class="doc">
+            <p>Get the maximum number of bounding boxes for the incoming list of annotation to create a batch with a constant number of bounding boxes.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">max_anno</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">anno</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">anno</span> <span class="ow">in</span> <span class="n">annos</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="14">
+        
+        <div class="doc">
+            <p>If the number of bounding boxes is greater than zero fill up a new tensor. Annotations which have been "padded" with new bounding boxes to get a constant bounding box number are annotated with -1 and are invalid.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">if</span> <span class="n">max_anno</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_annos</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">annos</span><span class="p">),</span> <span class="n">max_anno</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">anno</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">annos</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">anno</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">new_annos</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">anno</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">anno</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="15">
+        
+        <div class="doc">
+            <p>If no bounding boxes were found in the current batch, which can happen if the image has nothing to detect, than the tensor is filled with invalid bounding boxes, indicated by the value -1.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_annos</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">annos</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="16">
+        
+        <div class="doc">
+            <p>Return structure after the custom collate_fn.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;img&#39;</span>  <span class="p">:</span> <span class="n">imgs</span><span class="p">,</span>
+            <span class="s1">&#39;annotation&#39;</span> <span class="p">:</span> <span class="n">new_annos</span>
+        <span class="p">}</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="17">
+        
+        <div class="doc">
+            <p>Transformation instance to resize image and adapt annotations accordingly.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Resize</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="18">
+        
+        <div class="doc">
+            <p>Args:</p>
+<ul>
+<li><code>img_size (Tuple[int, int])</code>:<ul>
+<li>Size of image size resizing to [height, width].</li>
+</ul>
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_size</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="19">
+        
+        <div class="doc">
+            <p>Args:</p>
+<ul>
+<li><code>sample (dict)</code>:<ul>
+<li>Dictionary of one sample containing information about the image and the corresponding annotation.s</li>
+</ul>
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="20">
+        
+        <div class="doc">
+            <p>The pixel coordinates [0:4] are scaled according to the change in image height and image width.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">anno</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">*=</span> <span class="n">scale_width</span>
+        <span class="n">anno</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">*=</span> <span class="n">scale_height</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="21">
+        
+        <div class="doc">
+            <p>Return structure after resizing.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;img&#39;</span>  <span class="p">:</span> <span class="n">img</span><span class="p">,</span>
+            <span class="s1">&#39;annotation&#39;</span> <span class="p">:</span> <span class="n">anno</span>
+        <span class="p">}</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="22">
+        
+        <div class="doc">
+            <p>Local tests</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">project_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span>
+    <span class="n">cfg</span> <span class="o">=</span> <span class="n">omegaconf</span><span class="o">.</span><span class="n">DictConfig</span><span class="p">({</span><span class="s1">&#39;dataset&#39;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;name&#39;</span> <span class="p">:</span> <span class="s1">&#39;Kitti2D_ds&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;root&#39;</span> <span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="s2">&quot;data/kitti2D&quot;</span><span class="p">),</span>
+        <span class="s1">&#39;augmentation_methods&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rain&#39;</span><span class="p">,</span> <span class="s1">&#39;cloud&#39;</span><span class="p">,</span> <span class="s1">&#39;blur&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;batch_size&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;validation_ratio&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;image_width&#39;</span> <span class="p">:</span> <span class="mi">1280</span><span class="p">,</span>
+        <span class="s1">&#39;image_height&#39;</span> <span class="p">:</span> <span class="mi">384</span>
+    <span class="p">}})</span>
+    <span class="n">kitti2d_ds</span> <span class="o">=</span> <span class="n">Kitti2D_ds</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">kitti2d_ds</span><span class="o">.</span><span class="n">split_train_valid</span><span class="p">()</span>
+    <span class="n">dataloader_training</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">create_dataloader</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">cfg</span><span class="p">,</span> <span class="n">ds1</span><span class="o">=</span><span class="n">kitti2d_ds</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader_training</span><span class="p">):</span>
+        <span class="n">bbox</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i_box</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i_box</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># Skip invalid bb&#39;s</span>
+                <span class="k">continue</span>
+            <span class="n">bbox</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">BBox2D</span><span class="p">(</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i_box</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> 
+                    <span class="nb">int</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i_box</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> 
+                    <span class="nb">int</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i_box</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span> 
+                    <span class="nb">int</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i_box</span><span class="p">][</span><span class="mi">3</span><span class="p">]),</span> 
+                    <span class="nb">int</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;annotation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i_box</span><span class="p">][</span><span class="mi">4</span><span class="p">]),</span> <span class="mf">1.0</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">visualize</span><span class="p">(</span>
+            <span class="n">img</span><span class="o">=</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;img&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+            <span class="n">boxes</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> 
+            <span class="n">imshow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+            <span class="n">waitKey</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+            <span class="n">objectList</span><span class="o">=</span><span class="n">kitti2d_ds</span><span class="o">.</span><span class="n">classes</span>
+        <span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <a href="mailto:thomas.buechler@cariad.technology">Contact</a>
+    </div>
+    </div></body></html>
+    

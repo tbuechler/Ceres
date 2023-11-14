@@ -1,0 +1,509 @@
+<!DOCTYPE html><html><head>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            font-size: 1.5em;
+            line-height: 1.6;
+            font-weight: 400;
+            font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #777;
+            background: #ecf0f3;
+        }
+        #section_container {
+            position: relative;
+            background: #ecf0f3;
+        }
+        #background {
+            background: #ebedef;
+            border-left: 1px solid #e2e2eb;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #background {
+                display: block;
+            }
+        }
+        a {
+            color: #666;
+        }
+        a:visited {
+            color: #777;
+        }
+        a.parent {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        a.parent:after {
+            content: ">";
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    </style>
+    
+    <style>
+        div.section:hover {
+            background: #f8fafb;
+        }
+        div.section {
+            position: relative;
+        }
+        div.section:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+        div.section {
+            border-top: 1px solid #e2e2eb;
+        }
+        div.footer {
+            margin-top: 25px;
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+        }
+        div.footer a {
+            display: inline-block;
+            margin: 8px;
+            font-size: 1.3rem;
+        }
+        div.footer {
+            background: #d5dbe0;
+        }
+    </style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+        <style>
+        div.section:hover div.code {
+            background: #f8fafb;
+        }
+        div.section div.code {
+            background: #ebedef;
+              padding: 14px 8px 16px 15px;
+              vertical-align: top;
+        }
+        @media (min-width: 768px) {
+            div.section div.code {
+                margin-left: 40%;
+            }
+        }
+        </style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/mathtex-script-type.min.js" defer></script>
+        <style>
+            div.section div.doc {
+                box-sizing: border-box;
+                padding: 10px 8px 1px 8px;
+                vertical-align: top;
+                text-align: left;
+                word-break: break-all;
+            }
+        @media (min-width: 768px) {
+            div.section div.doc {
+                float: left;
+                width: 40%;
+                min-height: 5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            div.section div.doc {
+                padding: 10px 25px 1px 50px;
+            }
+        }
+        div.section div.doc img {
+            max-width: 100%;
+            transition:transform 0.25s ease;
+        }
+        img:hover {
+            -webkit-transform:scale(1.75);
+            transform:scale(1.75);
+        }        
+        </style>
+        </head><body><div id="section_container"><div id="background"></div>
+    <div class="section" id="0">
+        
+        <div class="doc">
+            <p><a class="parent" href="../index.html">Home</a><a class="parent" href="index.html">Loss</a></p>
+        </div>
+        
+    </div>
+    
+    <div class="section" id="1">
+        
+        <div class="doc">
+            <p><br><br></p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="2">
+        
+        <div class="doc">
+            <p>Wrapper class for the Cross Entropy loss.</p>
+<p>Args::
+    weights (torch.Tensor): Weight tensor for all classes.
+    ignore_index (int): Index to be ignored in computation.
+    reduction (str): Reduction method used for the final loss.</p>
+<p>Example::
+    &gt;&gt; cls_pred = torch.randn(4, 19, 128, 128, requires_grad=True)
+    &gt;&gt; gt = torch.zeros(4, 128, 128, dtype=torch.long).random_(19)
+    &gt;&gt; criterion = CrossEntropyLoss(ignore_index=255)
+    &gt;&gt; loss = criterion(cls_pred, gt)
+    print(loss)</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CrossEntropyLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="3">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weights</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span> <span class="n">reduction</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="4">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">targets</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="5">
+        
+        <div class="doc">
+            <p>Boundary-awareness Cross Entropy loss method inspired by 'Gated shape cnns for semantic segmentation'. It uses the input of boundary information to coordinate semantic segmentation.</p>
+<p>Args::
+    boundary_threshold: Threshold to handle value as positive or negative boundary.
+    ignore_index (int): Index to be ignored in computation.
+    weights (torch.Tensor): Weight tensor for all classes.
+    reduction (str): Reduction method used for the final loss.</p>
+<p>Example::
+    &gt;&gt; bnd_pred = torch.randn(4, 1, 128, 128, requires_grad=True)
+    &gt;&gt; cls_pred = torch.randn(4, 19, 128, 128, requires_grad=True)
+    &gt;&gt; gt = torch.zeros(4, 128, 128, dtype=torch.long).random_(19)
+    &gt;&gt; criterion = CrossEntropy_BoundaryAwarenessLoss(0.8, 255)
+    &gt;&gt; loss = criterion(bnd_pred, cls_pred, gt)
+    &gt;&gt; print(loss)
+    tensor(0.4998) # Just an example</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CrossEntropy_BoundaryAwarenessLoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="6">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">boundary_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">class_ignore_label</span><span class="p">:</span> <span class="nb">int</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">weights</span><span class="p">:</span>            <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">reduction</span><span class="p">:</span>          <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="7">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boundary_pred</span><span class="p">,</span> <span class="n">class_pred</span><span class="p">,</span> <span class="n">class_gt</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="8">
+        
+        <div class="doc">
+            <p>Adjust label vector according to boundary prediction If boundary value is above threshold use actual class label, otherwise use ignore value</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">tmp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">class_gt</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls_ignore</span>
+        <span class="n">_gt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">boundary_pred</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,:,:])</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">bd_threshold</span><span class="p">,</span>
+            <span class="n">class_gt</span><span class="p">,</span> <span class="n">tmp</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ce_criterion</span><span class="p">(</span><span class="n">class_pred</span><span class="p">,</span> <span class="n">_gt</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="9">
+        
+        <div class="doc">
+            <p>Cross Entry loss with Online Hard Example Mining. </p>
+<h2>Parameters</h2>
+<p>min_kept : float</p>
+<p>threshold : float</p>
+<p>weights : torch.FloatTensor
+    Weight tensor for all classes in the dataset.</p>
+<p>ignore_index : int
+    Index which has to be ignored in the loss calculation.</p>
+<p>reduction : str
+    How the separate losses are reduced in the end.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OhemCELoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="10">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weights</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_kept</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">ignore_index</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reduction</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="11">
+        
+        <div class="doc">
+            <p>It makes no difference if parameter weight is specified as None or not passed at all</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">if</span> <span class="n">ignore_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">criteria</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="n">ignore_index</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="n">reduction</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">criteria</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">(</span><span class="n">weight</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span> <span class="n">reduction</span><span class="o">=</span><span class="n">reduction</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="12">
+        
+        <div class="doc">
+            <p>Calculates Cross Entry loss with Online Hard Example Mining.</p>
+<h2>Parameters</h2>
+<p>prediction_logits : torch.Tensor
+    Direct output from the model (logits) with shape of [batch, channel, height, width].
+target_tensor : torch.Tensor
+    Ground-truth class index tensor with shape of [batch, height, width].</p>
+<h2>Returns</h2>
+<p>losses_and_metrics : tensor
+    Mean of channelwise OhemCELoss</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prediction_logits</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target_tensor</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="13">
+        
+        <div class="doc">
+            <p>Binary Cross Entropy loss for binary classification.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BinaryCELoss</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="14">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="15">
+        
+        <div class="doc">
+            <p>Calculates Binary Cross Entropy.</p>
+<h2>Parameters</h2>
+<p>prediction_logits : torch.Tensor
+    Direct output from the model (logits) with shape of [batch, channel, height, width].
+target_tensor : torch.Tensor
+    Ground-truth class index tensor with shape of [batch, height, width].</p>
+<h2>Returns</h2>
+<p>losses_and_metrics : tensor
+    Mean of channelwise OhemCELoss</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prediction_logits</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target_tensor</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <a href="mailto:thomas.buechler@cariad.technology">Contact</a>
+    </div>
+    </div></body></html>
+    

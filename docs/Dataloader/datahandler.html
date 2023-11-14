@@ -1,0 +1,705 @@
+<!DOCTYPE html><html><head>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            font-size: 1.5em;
+            line-height: 1.6;
+            font-weight: 400;
+            font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #777;
+            background: #ecf0f3;
+        }
+        #section_container {
+            position: relative;
+            background: #ecf0f3;
+        }
+        #background {
+            background: #ebedef;
+            border-left: 1px solid #e2e2eb;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #background {
+                display: block;
+            }
+        }
+        a {
+            color: #666;
+        }
+        a:visited {
+            color: #777;
+        }
+        a.parent {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        a.parent:after {
+            content: ">";
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    </style>
+    
+    <style>
+        div.section:hover {
+            background: #f8fafb;
+        }
+        div.section {
+            position: relative;
+        }
+        div.section:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+        div.section {
+            border-top: 1px solid #e2e2eb;
+        }
+        div.footer {
+            margin-top: 25px;
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+        }
+        div.footer a {
+            display: inline-block;
+            margin: 8px;
+            font-size: 1.3rem;
+        }
+        div.footer {
+            background: #d5dbe0;
+        }
+    </style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+        <style>
+        div.section:hover div.code {
+            background: #f8fafb;
+        }
+        div.section div.code {
+            background: #ebedef;
+              padding: 14px 8px 16px 15px;
+              vertical-align: top;
+        }
+        @media (min-width: 768px) {
+            div.section div.code {
+                margin-left: 40%;
+            }
+        }
+        </style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/mathtex-script-type.min.js" defer></script>
+        <style>
+            div.section div.doc {
+                box-sizing: border-box;
+                padding: 10px 8px 1px 8px;
+                vertical-align: top;
+                text-align: left;
+                word-break: break-all;
+            }
+        @media (min-width: 768px) {
+            div.section div.doc {
+                float: left;
+                width: 40%;
+                min-height: 5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            div.section div.doc {
+                padding: 10px 25px 1px 50px;
+            }
+        }
+        div.section div.doc img {
+            max-width: 100%;
+            transition:transform 0.25s ease;
+        }
+        img:hover {
+            -webkit-transform:scale(1.75);
+            transform:scale(1.75);
+        }        
+        </style>
+        </head><body><div id="section_container"><div id="background"></div>
+    <div class="section" id="0">
+        
+        <div class="doc">
+            <p><a class="parent" href="../index.html">Home</a><a class="parent" href="index.html">Dataloader</a></p>
+        </div>
+        
+    </div>
+    
+    <div class="section" id="1">
+        
+        <div class="doc">
+            <p><br><br><br></p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">PIL</span>
+<span class="kn">import</span> <span class="nn">omegaconf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">source.Dataloader</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># Fetch all datasets</span>
+<span class="kn">from</span> <span class="nn">source.Logger.logger</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">omegaconf.dictconfig</span> <span class="kn">import</span> <span class="n">DictConfig</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="2">
+        
+        <div class="doc">
+            <h1>DataHandler</h1>
+<p>Base class for custom datasets. Datasets are meant to load your data as you want and need. Your custom dataset will be fetched by the agent automatically and used within the session batch-wise.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DataHandler</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="3">
+        
+        <div class="doc">
+            <p>Args:</p>
+<ul>
+<li><code>cfg (omegaconf.DictConfig)</code>: <ul>
+<li>Hydra based configuration dictionary based on the given configuration .yaml file. <strong>Only the subset cfg object for the dataset is available at this point.</strong></li>
+</ul>
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg_dataset</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="4">
+        
+        <div class="doc">
+            <p>Member of each dataset which will hold the information of all files, i.e. paths to input images or/and labels.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">filenames</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="5">
+        
+        <div class="doc">
+            <p>If this dataset is not only used for training but also used for validation (so they is no separate dataset defined), both member will hold the information which indices of <code>self.filenames</code> belong to the training and validation set.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">indices_train</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indices_valid</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="6">
+        
+        <div class="doc">
+            <p>Returns the size of the dataset according to the number of found files.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="7">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Returns current item according to given index. This needs to be implemented by custom dataset. If not, an error is thrown.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="8">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Search for all files/data in a given root directory. Either search for all information using a certain folder structure or use a filelist, defined in the configuration file. This needs to be implemented by the custom dataset.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">search_files</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="9">
+        
+        <div class="doc">
+            <p>Validates that none of all found files is corrupted and can be read correctly. If not, they will be removed from filenames beforehand.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">validate_files</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="10">
+        
+        <div class="doc">
+            <p>Only images will be verified so far. PIL is used for verification. If no error is thrown when verify() is called it is considered to be not  corrupted. If an error is thrown, the file index will  be saved for removing of the list later.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>                <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.png&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.jpg&quot;</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">im</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+                    <span class="n">im</span><span class="o">.</span><span class="n">verify</span><span class="p">()</span>
+                    <span class="n">im</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">except</span> <span class="p">(</span><span class="ne">IOError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">,</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">DecompressionBombError</span><span class="p">):</span>
+                    <span class="n">remove_idxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+                    <span class="k">break</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="11">
+        
+        <div class="doc">
+            <p>Splits the dataset into two different subsets that can be used for training and validation. This is done by shuffling the file set randomly and compute the separator according to the validation/train split defined with <code>self.cfg.validation_ratio</code>.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">split_train_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="12">
+        
+        <div class="doc">
+            <p>Split index list for training and validation split</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">split_at</span>         <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="mf">1.</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">validation_ratio</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">indices_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">indices_valid</span> <span class="o">=</span> <span class="n">_indices</span><span class="p">[:</span><span class="n">split_at</span><span class="p">],</span> <span class="n">_indices</span><span class="p">[</span><span class="n">split_at</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="13">
+        
+        <div class="doc">
+            <p>Dumping out the information of the DataHandler like used data, splitted train and validation set.</p>
+<p>Args:</p>
+<ul>
+<li><code>out_dir (str)</code>: Path where the file is dumped to.</li>
+<li><code>filename (str)</code>: Name of the csv file.</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">dump_datahandler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="14">
+        
+        <div class="doc">
+            <p>Check if only this datahandler is used for train and validation by checking the length of the indices list. If they were not set (empty) another dataset was used originally for validation.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">is_splitted</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices_train</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices_valid</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="15">
+        
+        <div class="doc">
+            <p>Dataset information can be dumped out only if <code>self.filenames</code> contains file paths so far.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">are_files</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">files_entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filenames</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files_entry</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+                    <span class="n">are_files</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">break</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">are_files</span><span class="p">:</span>
+            <span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;[Dataset/</span><span class="si">{}</span><span class="s2">] Cannot dump out information since self.files does not contain file information.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="16">
+        
+        <div class="doc">
+            <p>Finalizing step for all datasets that includes dumping out information about the dataset itself.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="17">
+        
+        <div class="doc">
+            <h1>MultiDataHandler</h1>
+<p>Base class for custom multi datasets that can merge multiple datasets into one. Datasets are meant to load your data as you want and need. Your custom dataset will be fetched by the agent automatically and used within the session batch-wise.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MultiDataHandler</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="18">
+        
+        <div class="doc">
+            <p>Args:</p>
+<ul>
+<li><code>cfg (omegaconf.DictConfig)</code>: <ul>
+<li>Hydra based configuration dictionary based on the given configuration .yaml file. <strong>Only the subset cfg object for the dataset is available at this point.</strong></li>
+</ul>
+</li>
+<li><code>datasets (dict)</code>:<ul>
+<li>Dictionary that stores all datasets to create a MultiDatahandler
+  out of it. For each key (dataset name) a class object is given 
+  as value.</li>
+</ul>
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">DictConfig</span><span class="p">,</span> <span class="n">datasets</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="19">
+        
+        <div class="doc">
+            <p>Create mapping from given index to a specfic dataset.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">idx2dataset</span> <span class="o">=</span> <span class="p">[(</span><span class="n">d_str</span><span class="p">,</span> <span class="n">d_idx</span><span class="p">)</span> <span class="k">for</span> <span class="n">d_str</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">for</span> <span class="n">d_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="p">[</span><span class="n">d_str</span><span class="p">]))]</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">idx2dataset</span><span class="p">),</span> <span class="s2">&quot;[MultiDataHandler] Number of Index to Dataset mapping does not match length of MultiDataset.&quot;</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="20">
+        
+        <div class="doc">
+            <p>If this dataset is not only used for training but also used for validation (so they is no separate dataset defined), both member will hold the information which indices of <code>self.filenames</code> belong to the training and validation set.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">indices_train</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indices_valid</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="21">
+        
+        <div class="doc">
+            <p>Returns size of dataset according to the number of found files.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="22">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Fetches current item according to given index. This needs to be implemented by custom dataset. If not, an error is thrown.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="23">
+        
+        <div class="doc">
+            <p>Splits the dataset into two different subsets that can be used for training and validation. This is done by shuffling the file set randomly and compute the separator according to the validation/train split defined with <code>self.cfg.validation_ratio</code>.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">split_train_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="24">
+        
+        <div class="doc">
+            <p>Split index list for training and validation split</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">split_at</span>         <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">((</span><span class="mf">1.</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">validation_ratio</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">indices_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">indices_valid</span> <span class="o">=</span> <span class="n">_indices</span><span class="p">[:</span><span class="n">split_at</span><span class="p">],</span> <span class="n">_indices</span><span class="p">[</span><span class="n">split_at</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="25">
+        
+        <div class="doc">
+            <p>Dumping out the information of the DataHandler like used data, splitted train and validation set.</p>
+<p>Args:</p>
+<ul>
+<li><code>out_dir (str)</code>: Path where the file is dumped to.</li>
+<li><code>filename (str)</code>: Name of the csv file.</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">dump_datahandler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="26">
+        
+        <div class="doc">
+            <p>Check if only this datahandler is used for train and validation by checking the length of the indices list. If they were not set (empty) another dataset was used originally for validation.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">is_splitted</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices_train</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indices_valid</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="27">
+        
+        <div class="doc">
+            <p>Dataset information can be dumped out only if <code>self.filenames</code> of all datasets contain file paths.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">files_entry</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">filenames</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files_entry</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+                        <span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;[DataHandler] Cannot dump out information since </span><span class="si">{}</span><span class="s2"> does not contain file information.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+                        <span class="k">return</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="28">
+        
+        <div class="doc">
+            <p>Finalizing step for all datasets that includes dumping out information about the dataset itself.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <a href="mailto:thomas.buechler@cariad.technology">Contact</a>
+    </div>
+    </div></body></html>
+    

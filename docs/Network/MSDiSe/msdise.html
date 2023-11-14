@@ -1,0 +1,1354 @@
+<!DOCTYPE html><html><head>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            font-size: 1.5em;
+            line-height: 1.6;
+            font-weight: 400;
+            font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #777;
+            background: #ecf0f3;
+        }
+        #section_container {
+            position: relative;
+            background: #ecf0f3;
+        }
+        #background {
+            background: #ebedef;
+            border-left: 1px solid #e2e2eb;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #background {
+                display: block;
+            }
+        }
+        a {
+            color: #666;
+        }
+        a:visited {
+            color: #777;
+        }
+        a.parent {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        a.parent:after {
+            content: ">";
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    </style>
+    
+    <style>
+        div.section:hover {
+            background: #f8fafb;
+        }
+        div.section {
+            position: relative;
+        }
+        div.section:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+        div.section {
+            border-top: 1px solid #e2e2eb;
+        }
+        div.footer {
+            margin-top: 25px;
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+        }
+        div.footer a {
+            display: inline-block;
+            margin: 8px;
+            font-size: 1.3rem;
+        }
+        div.footer {
+            background: #d5dbe0;
+        }
+    </style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+        <style>
+        div.section:hover div.code {
+            background: #f8fafb;
+        }
+        div.section div.code {
+            background: #ebedef;
+              padding: 14px 8px 16px 15px;
+              vertical-align: top;
+        }
+        @media (min-width: 768px) {
+            div.section div.code {
+                margin-left: 40%;
+            }
+        }
+        </style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/mathtex-script-type.min.js" defer></script>
+        <style>
+            div.section div.doc {
+                box-sizing: border-box;
+                padding: 10px 8px 1px 8px;
+                vertical-align: top;
+                text-align: left;
+                word-break: break-all;
+            }
+        @media (min-width: 768px) {
+            div.section div.doc {
+                float: left;
+                width: 40%;
+                min-height: 5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            div.section div.doc {
+                padding: 10px 25px 1px 50px;
+            }
+        }
+        div.section div.doc img {
+            max-width: 100%;
+            transition:transform 0.25s ease;
+        }
+        img:hover {
+            -webkit-transform:scale(1.75);
+            transform:scale(1.75);
+        }        
+        </style>
+        </head><body><div id="section_container"><div id="background"></div>
+    <div class="section" id="0">
+        
+        <div class="doc">
+            <p><a class="parent" href="../../index.html">Home</a><a class="parent" href="../index.html">Network</a><a class="parent" href="index.html">MSDiSe</a></p>
+        </div>
+        
+    </div>
+    
+    <div class="section" id="1">
+        
+        <div class="doc">
+            <p><br><br>(1)  Feature Extractor  </p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+
+<span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="2">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">EncoderBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="3">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="4">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="5">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FeatureExtractor</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="6">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">mid_channels</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="7">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="8">
+        
+        <div class="doc">
+            <p>Disparity</p>
+        </div>
+        
+        
+        <div class="code">
+            
+        </div>
+        
+    </div>
+    
+    <div class="section" id="9">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ConvBnLRelu</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="10">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch_in</span><span class="p">,</span> <span class="n">ch_out</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="11">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="12">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ConvBnRelu</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="13">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">ks</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="14">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="15">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TransposeConvBnRelu</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="16">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_ch</span><span class="p">,</span> <span class="n">out_ch</span><span class="p">,</span> <span class="n">ks</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="17">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="18">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CostVolume</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="19">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disparity_lvls</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="20">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features_1</span><span class="p">,</span> <span class="n">features_2</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="21">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">corr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f1</span><span class="p">:</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">f2</span><span class="p">:</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="22">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CostVolumeBidirectional</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="23">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disparity_lvls</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="24">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features_1</span><span class="p">,</span> <span class="n">features_2</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="25">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">corr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f1</span><span class="p">:</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">f2</span><span class="p">:</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="26">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DisparityWarp</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="27">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">disparity</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="28">
+        
+        <div class="doc">
+            <p>mesh grid </p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">xx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">W</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">yy</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">H</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">src</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">W</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="29">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">hourglass2D</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="30">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inplanes</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="31">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="32">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">RefineDisp</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="33">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch_in</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="34">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_disparity</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="35">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MatchNet2</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="36">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch_in</span><span class="p">,</span> <span class="n">max_disparity</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="37">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_features</span><span class="p">,</span> <span class="n">right_features</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="38">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MatchNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="39">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch_in</span><span class="p">,</span> <span class="n">max_disparity</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="40">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_features</span><span class="p">,</span> <span class="n">right_features</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="41">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Upscale</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="42">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="43">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="44">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DisparityHead</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="45">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_disparity</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="46">
+        
+        <div class="doc">
+            <p>self.refine = RefineDisp(3)</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">refine</span> <span class="o">=</span> <span class="n">hourglass2D</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="47">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f_scales_l</span><span class="p">,</span> <span class="n">f_scales_r</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="48">
+        
+        <div class="doc">
+            <p>for every scale build a cost volume</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">d5</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">disp_decoder_5</span><span class="p">(</span><span class="n">f_scales_l</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">f_scales_r</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="49">
+        
+        <div class="doc">
+            <p>upsample without mini cost volume and refine, probably this way we could be able to tackle the instability from rectification ambiguities.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">d0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">upsample1</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+        <span class="n">d0</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">refine</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">d0</span><span class="p">,</span> <span class="n">f_scales_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="n">d0</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="50">
+        
+        <div class="doc">
+            <p>SemSeg</p>
+        </div>
+        
+        
+        <div class="code">
+            
+        </div>
+        
+    </div>
+    
+    <div class="section" id="51">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="52">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="53">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="54">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Decode</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="55">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">aux_in</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="56">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_c</span><span class="p">,</span> <span class="n">aux</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="57">
+        
+        <div class="doc">
+            <p>deconv x</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">aux</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">aux</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">x_c</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="58">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SemSegHead</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="59">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">feat_channels</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="60">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_scales</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="61">
+        
+        <div class="doc">
+            <p>MultiTask Network</p>
+        </div>
+        
+        
+        <div class="code">
+            
+        </div>
+        
+    </div>
+    
+    <div class="section" id="62">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">_MultiStereoNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="63">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">mid_channels_fe</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">semseg_classes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_disparity</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="64">
+        
+        <div class="doc">
+            <p>Feature Extractor</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">feature_extractor</span> <span class="o">=</span> <span class="n">FeatureExtractor</span><span class="p">(</span>
+            <span class="n">in_channels</span><span class="o">=</span><span class="n">in_channels</span><span class="p">,</span>
+            <span class="n">mid_channels</span><span class="o">=</span><span class="n">mid_channels_fe</span>
+        <span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="65">
+        
+        <div class="doc">
+            <p>Disparity Head</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">disparity_head</span> <span class="o">=</span> <span class="n">DisparityHead</span><span class="p">(</span><span class="n">max_disparity</span><span class="o">=</span><span class="n">max_disparity</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="66">
+        
+        <div class="doc">
+            <p>SemSeg Head</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">semseg_head</span> <span class="o">=</span> <span class="n">SemSegHead</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="n">semseg_classes</span><span class="p">,</span> <span class="n">feat_channels</span><span class="o">=</span><span class="n">mid_channels_fe</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="67">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_img</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">right_img</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="68">
+        
+        <div class="doc">
+            <p>Export of checkpoint and ONNX model. Models of sub-networks like Backbone and FPN are also exported.</p>
+<p>Args:
+    input_args (Tuple[torch.Tensor, ]): Random input argument for tracing.
+    dir_path (str): Path the models are saved to.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_args</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="p">],</span> <span class="n">dir_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="69">
+        
+        <div class="doc">
+            <p>Precheck</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">),</span> <span class="s2">&quot;[MSDiSe] dir_path is not a directory: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="70">
+        
+        <div class="doc">
+            <p>Define attributes for ONNX export</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">_input_names</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;i_left_img&#39;</span><span class="p">,</span> <span class="s1">&#39;i_right_img&#39;</span><span class="p">]</span>
+        <span class="n">_output_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;o_sem&#39;</span><span class="p">,</span> <span class="s1">&#39;o_disp0&#39;</span><span class="p">]</span>
+        <span class="n">_dynamic_axes</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="71">
+        
+        <div class="doc">
+            <p>Checkpoint export </p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">file_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.onnx&quot;</span><span class="p">,</span> <span class="s2">&quot;.pth&quot;</span><span class="p">))</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="72">
+        
+        <div class="doc">
+            <p>Wrapper class for MultiStereoNet to call it by using config file.</p>
+<p>Args:
+    cfg (omegaconf.DictConfig): Configuration dictionary created by Hydra based on the given configuration .yaml file.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MultiStereoNet</span><span class="p">(</span><span class="n">_MultiStereoNet</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="73">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="74">
+        
+        <div class="doc">
+            <p>Config </p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="n">cfg</span> <span class="o">=</span> <span class="n">omegaconf</span><span class="o">.</span><span class="n">DictConfig</span><span class="p">({</span><span class="s1">&#39;network&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s1">&#39;attributes&#39;</span> <span class="p">:</span> <span class="p">{}}})</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">in_channels</span>      <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">mid_channels</span>     <span class="o">=</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="mi">96</span><span class="p">,</span><span class="mi">128</span><span class="p">]</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">semseg_classes</span>   <span class="o">=</span> <span class="mi">19</span>
+    <span class="n">cfg</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">max_disparity</span>    <span class="o">=</span> <span class="mi">192</span>
+    <span class="n">net</span> <span class="o">=</span> <span class="n">MultiStereoNet</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <a href="mailto:thomas.buechler@cariad.technology">Contact</a>
+    </div>
+    </div></body></html>
+    

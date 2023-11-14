@@ -1,0 +1,632 @@
+<!DOCTYPE html><html><head>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            font-size: 1.5em;
+            line-height: 1.6;
+            font-weight: 400;
+            font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #777;
+            background: #ecf0f3;
+        }
+        #section_container {
+            position: relative;
+            background: #ecf0f3;
+        }
+        #background {
+            background: #ebedef;
+            border-left: 1px solid #e2e2eb;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #background {
+                display: block;
+            }
+        }
+        a {
+            color: #666;
+        }
+        a:visited {
+            color: #777;
+        }
+        a.parent {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        a.parent:after {
+            content: ">";
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    </style>
+    
+    <style>
+        div.section:hover {
+            background: #f8fafb;
+        }
+        div.section {
+            position: relative;
+        }
+        div.section:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+        div.section {
+            border-top: 1px solid #e2e2eb;
+        }
+        div.footer {
+            margin-top: 25px;
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+        }
+        div.footer a {
+            display: inline-block;
+            margin: 8px;
+            font-size: 1.3rem;
+        }
+        div.footer {
+            background: #d5dbe0;
+        }
+    </style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+        <style>
+        div.section:hover div.code {
+            background: #f8fafb;
+        }
+        div.section div.code {
+            background: #ebedef;
+              padding: 14px 8px 16px 15px;
+              vertical-align: top;
+        }
+        @media (min-width: 768px) {
+            div.section div.code {
+                margin-left: 40%;
+            }
+        }
+        </style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/mathtex-script-type.min.js" defer></script>
+        <style>
+            div.section div.doc {
+                box-sizing: border-box;
+                padding: 10px 8px 1px 8px;
+                vertical-align: top;
+                text-align: left;
+                word-break: break-all;
+            }
+        @media (min-width: 768px) {
+            div.section div.doc {
+                float: left;
+                width: 40%;
+                min-height: 5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            div.section div.doc {
+                padding: 10px 25px 1px 50px;
+            }
+        }
+        div.section div.doc img {
+            max-width: 100%;
+            transition:transform 0.25s ease;
+        }
+        img:hover {
+            -webkit-transform:scale(1.75);
+            transform:scale(1.75);
+        }        
+        </style>
+        </head><body><div id="section_container"><div id="background"></div>
+    <div class="section" id="0">
+        
+        <div class="doc">
+            <p><a class="parent" href="../index.html">Home</a><a class="parent" href="index.html">Model</a></p>
+        </div>
+        
+    </div>
+    
+    <div class="section" id="1">
+        
+        <div class="doc">
+            <p><br><br><br></p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">omegaconf</span>
+
+<span class="kn">from</span> <span class="nn">source.Network</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># Fetch all possible network architectures</span>
+<span class="kn">from</span> <span class="nn">source.Dataloader</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># Fetch all datasets</span>
+<span class="kn">from</span> <span class="nn">source.Logger.logger</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">source.Utility.system</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">source.Network.utils</span> <span class="kn">import</span> <span class="n">get_network_parameter_number</span>
+<span class="kn">from</span> <span class="nn">source.Dataloader.Utility.dataloader</span> <span class="kn">import</span> <span class="n">create_dataloader</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="2">
+        
+        <div class="doc">
+            <h1>Model Wrapper</h1>
+<p>Base class for a custom model wrapper.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ModelWrapper</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="3">
+        
+        <div class="doc">
+            <p>Args:</p>
+<ul>
+<li><code>cfg (omegaconf.DictConfig)</code>: <ul>
+<li>Hydra based configuration dictionary based on the given configuration .yaml file. </li>
+</ul>
+</li>
+<li><code>mode (str)</code>: <ul>
+<li>The mode of the current process.</li>
+</ul>
+</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">omegaconf</span><span class="o">.</span><span class="n">DictConfig</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="4">
+        
+        <div class="doc">
+            <p>Member for automatic data exchange with agent etc.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">input</span>          <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Input is set after each call of set_batch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ground_truth</span>   <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># GroundTruth is set after each call of set_batch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prediction</span>     <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Prediction is set after each forward call of the network</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_loss</span>     <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># FinalLoss is set after the loss was computed</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="5">
+        
+        <div class="doc">
+            <p>Member that hold the whole architecture.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">lr_scheduler</span>   <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span>      <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_arch</span>     <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="6">
+        
+        <div class="doc">
+            <p>Sets up the current model wrapper including network architecture, dataloader, optimizer, etc.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="7">
+        
+        <div class="doc">
+            <p>Setup Dataset and Dataloader defined in the configuration file. Regardless of the mode a dataset and dataloader for training and validation is created. </p>
+<p>After this part was called dataset and dataloader are initialized and accessible via</p>
+<ul>
+<li>self.dataset</li>
+<li>self.dataset_valid (optional)</li>
+<li>self.dataloader_train</li>
+<li>self.dataloader_valid</li>
+</ul>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_setup_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="8">
+        
+        <div class="doc">
+            <p>The input, packed as a tuple, is going to be collapsed and fed into the network.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_forward</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="9">
+        
+        <div class="doc">
+            <p>Computation of loss, gradients and update of network weights.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_optimize_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="10">
+        
+        <div class="doc">
+            <p>If <code>self.final_loss</code> is a nan value it must be handled differently. The optimizer is not called but the nan value cannot be ignored.  Otherwise the memory allocation is going to be accumulated. It  needs to be delete manually.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final_loss</span><span class="p">):</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_loss</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="11">
+        
+        <div class="doc">
+            <p>Method to save the current state of the process including a checkpoint of the network architecture.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_save_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="12">
+        
+        <div class="doc">
+            <p>Exporting the network requires a dummy input fro tracing. For this, it just takes the last used input. If the export was not implement,  it will just do nothing.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">input_cpu</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_arch</span><span class="o">.</span><span class="n">export</span><span class="p">(</span>
+            <span class="n">input_cpu</span><span class="p">,</span> 
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfg</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">checkpoint_dir</span><span class="p">,</span> <span class="n">dir_name</span><span class="p">)</span>
+        <span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="13">
+        
+        <div class="doc">
+            <p>Loads a pretrained network to the process. This method is called in the beginning of each process and will basically do nothing if no model is given.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_load_network</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_to_pth_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="14">
+        
+        <div class="doc">
+            <p>Loads a saved state of an optimizer that has been used in previous runs.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_load_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_to_pth_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="15">
+        
+        <div class="doc">
+            <p>Prints the total number of trainable parameters in the utilized network architecture.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_print_network</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="16">
+        
+        <div class="doc">
+            <p>Returns true if the underlying network is in training mode, else False.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_training_active</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="17">
+        
+        <div class="doc">
+            <p>Converts the underlying network into training mode.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_to_train</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="18">
+        
+        <div class="doc">
+            <p>Converts the underlying network into evaluation mode.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_to_eval</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="19">
+        
+        <div class="doc">
+            <p>Returns the current learning rate from the scheduler.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get_lr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="20">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Updates the learning rate based on a predefined approach. This method is <strong>NOT</strong> called from the BaseAgent automatically. This method must be triggered manually within the custom agent using the available abstract methods.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">update_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="21">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Processes the batch coming from the dataset and passed from the agent and sets the internal input member accordingly. This needs to be implemented by the user, since the structure of a batch from different datasets can be different.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="22">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Method to initialize the functions for computing the final loss value.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_loss_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="23">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Method to actually compute the loss value using the previously initialized loss functions. After the call of this method <code>self.final_loss</code> must be set.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">compute_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="24">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Construction of an Optimizer.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="25">
+        
+        <div class="doc">
+            <p><strong>Abstract</strong>: Construction of a LR Scheduler.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">set_learning_rate_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <a href="mailto:thomas.buechler@cariad.technology">Contact</a>
+    </div>
+    </div></body></html>
+    

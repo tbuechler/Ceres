@@ -1,0 +1,53 @@
+experiment:
+  name: "Overfit_PIDNet_SemanticSegmentation_Cityscape"
+  on_device: "mps"
+  num_epochs: 1000
+  overwrite_checkpoint: False
+
+agent:
+  name: "Overfit_PIDNet_SemSeg_Agent"
+  use_tensorboard: True
+
+network:
+  name: "PIDNet"
+  attributes:
+    compound_coefficient: 0
+    in_channels: 3
+    begin_channels: 32
+    ppm_channels: 96
+    head_channels: 128
+    num_classes: 19
+    blocks_num: 2
+    blocks_num_deep: 3
+
+dataset:
+  name: "Cityscape_ds"
+  # Unfortunately, absolute paths are necessary for now.
+  root: "/Users/FIXCCSF/Desktop/Projects/data/Cityscape"
+  image_width: 2048
+  image_height: 1024
+  batch_size: 2
+  num_workers: 4
+  ignore_label: 255
+  set_name: "train"
+  normalization_mean: [0.485, 0.456, 0.406]
+  normalization_std: [0.229, 0.224, 0.225]
+
+dataset_valid:
+  name: "Cityscape_ds"
+  # Unfortunately, absolute paths are necessary for now.
+  root: "/Users/FIXCCSF/Desktop/Projects/data/Cityscape"
+  image_width: 2048
+  image_height: 1024
+  batch_size: 2
+  num_workers: 4
+  ignore_label: 255
+  set_name: "val"
+  normalization_mean: [0.485, 0.456, 0.406]
+  normalization_std: [0.229, 0.224, 0.225]
+ 
+model_wrapper:
+  name: "PIDNet_Semseg_ModelWrapper"
+  optimizer:
+    learning_rate: 1e-2
+

@@ -1,0 +1,845 @@
+<!DOCTYPE html><html><head>
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        body {
+            font-size: 1.5em;
+            line-height: 1.6;
+            font-weight: 400;
+            font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #777;
+            background: #ecf0f3;
+        }
+        #section_container {
+            position: relative;
+            background: #ecf0f3;
+        }
+        #background {
+            background: #ebedef;
+            border-left: 1px solid #e2e2eb;
+            position: absolute;
+            top: 0;
+            left: 40%;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #background {
+                display: block;
+            }
+        }
+        a {
+            color: #666;
+        }
+        a:visited {
+            color: #777;
+        }
+        a.parent {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        a.parent:after {
+            content: ">";
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    </style>
+    
+    <style>
+        div.section:hover {
+            background: #f8fafb;
+        }
+        div.section {
+            position: relative;
+        }
+        div.section:after {
+            clear: both;
+            content: "";
+            display: block;
+        }
+        div.section {
+            border-top: 1px solid #e2e2eb;
+        }
+        div.footer {
+            margin-top: 25px;
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+        }
+        div.footer a {
+            display: inline-block;
+            margin: 8px;
+            font-size: 1.3rem;
+        }
+        div.footer {
+            background: #d5dbe0;
+        }
+    </style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+        <style>
+        div.section:hover div.code {
+            background: #f8fafb;
+        }
+        div.section div.code {
+            background: #ebedef;
+              padding: 14px 8px 16px 15px;
+              vertical-align: top;
+        }
+        @media (min-width: 768px) {
+            div.section div.code {
+                margin-left: 40%;
+            }
+        }
+        </style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/mathtex-script-type.min.js" defer></script>
+        <style>
+            div.section div.doc {
+                box-sizing: border-box;
+                padding: 10px 8px 1px 8px;
+                vertical-align: top;
+                text-align: left;
+                word-break: break-all;
+            }
+        @media (min-width: 768px) {
+            div.section div.doc {
+                float: left;
+                width: 40%;
+                min-height: 5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            div.section div.doc {
+                padding: 10px 25px 1px 50px;
+            }
+        }
+        div.section div.doc img {
+            max-width: 100%;
+            transition:transform 0.25s ease;
+        }
+        img:hover {
+            -webkit-transform:scale(1.75);
+            transform:scale(1.75);
+        }        
+        </style>
+        </head><body><div id="section_container"><div id="background"></div>
+    <div class="section" id="0">
+        
+        <div class="doc">
+            <p><a class="parent" href="../index.html">Home</a><a class="parent" href="index.html">Loss</a></p>
+        </div>
+        
+    </div>
+    
+    <div class="section" id="1">
+        
+        <div class="doc">
+            <p><br></p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="2">
+        
+        <div class="doc">
+            <p>Computes the Intersection-of-Union between all anchor boxes and the given ground truth data.</p>
+<h2>Parameters</h2>
+<p>anchors : torch.Tensor
+    Precomputed anchor boxes. Shape: (num_anchors, 4), i.e. (x1, y1, x2, y2).
+gt : torch.Tensor
+    Ground truth data with available bounding boxes in the image. Shape: (num_boxes, 4), i.e. (x1, y1, x2, y2).</p>
+<h2>Returns</h2>
+<p>IoU : torch.Tensor
+    Computed IoU between each anchor box and each box in the ground truth data.
+    Thus the output shape must be: (num_anchors, num_bb_gt). 
+    i.e. [(49104, 4), (20, 4)] -&gt; (49104, 20)</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_IoU_anchors</span><span class="p">(</span><span class="n">anchors</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">gt</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="3">
+        
+        <div class="doc">
+            <p>Compute width and height of the intersection part Width: min(x2, x2') - max(x1, x1')</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="n">inter_width</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">anchors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">gt</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">anchors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">gt</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">inter_width</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">inter_width</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Just in case of anchor boxes outside of image size</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="4">
+        
+        <div class="doc">
+            <p>Height: min(y2, y2') - max(y1, y1')</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="n">inter_height</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">anchors</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">gt</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="n">anchors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">gt</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">inter_height</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">inter_height</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Just in case of anchor boxes outside of image size</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="5">
+        
+        <div class="doc">
+            <p>Area of intersection: Height*Width</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="n">inter_area</span> <span class="o">=</span> <span class="n">inter_height</span> <span class="o">*</span> <span class="n">inter_width</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="6">
+        
+        <div class="doc">
+            <p>Compute area of union part Area of anchor box + Area of GT box - intersection</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="n">anchor_area</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(((</span><span class="n">anchors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">anchors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">anchors</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">anchors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (x2-x1)[Width] * (y2-y1)[Height]</span>
+    <span class="n">bb_area</span>     <span class="o">=</span> <span class="p">(</span><span class="n">gt</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">gt</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">gt</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">gt</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># (x2-x1)[Width] * (y2-y1)[Height]</span>
+    <span class="n">union_area</span>  <span class="o">=</span> <span class="n">anchor_area</span> <span class="o">+</span> <span class="n">bb_area</span> <span class="o">-</span> <span class="n">inter_area</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="7">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Focal_SmoothL1_Loss_OD</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="8">
+        
+        <div class="doc">
+            
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="9">
+        
+        <div class="doc">
+            <p>Computes the focal loss for the classification path and the SmoothL1 loss for the regression path.</p>
+<h2>Parameters</h2>
+<p>regression : torch.Tensor
+    Prediction of location of objects. Shape: [B, n_anchors, 4], i.e. (x1, y1, x2, y2).
+classification : torch.Tensor
+    Prediction of the class of each object. Shape: [B, n_anchors, num_classes].
+anchors : torch.Tensor
+    Tensor containing all precomputed anchor boxes for all scales. Shape: [1, n_anchors, 4], i.e. (x1, y1, x2, y2).
+gt_BB : torch.Tensor
+    Ground truth data for each image. Shape: [B, max_bbs_in_image_batch, 5], i.e. (x1, y1, x2, y2, c).</p>
+<h2>Returns</h2>
+<p>class_loss
+    Classification loss using FocalLoss.
+regression_loss
+    Regression loss using SmoothL1-Loss.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regression</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">classification</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">anchors</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">gt_BB</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="10">
+        
+        <div class="doc">
+            <p>Loss container for regression and classification part</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">classification_loss</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">regression_loss</span>     <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="11">
+        
+        <div class="doc">
+            <p>Transform anchors from point coordinate structure to center height/width structure (x1, y1, x2, y2) -&gt; (x_c, y_c, width, height)</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">_anchors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">anchors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">))</span>
+        <span class="n">_anchors</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">anchors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">anchors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">])</span> <span class="c1"># Width  = abs(x1 - x2)</span>
+        <span class="n">_anchors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">anchors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">anchors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">])</span> <span class="c1"># Height = abs(y1 - y2)</span>
+        <span class="n">_anchors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">_anchors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span> <span class="c1"># y_c = y1 + 0.5*height</span>
+        <span class="n">_anchors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">_anchors</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span> <span class="c1"># x_c = x1 + 0.5*width</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="12">
+        
+        <div class="doc">
+            <p>Iterate over each element in the current batch</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="k">for</span> <span class="n">i_batch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">regression</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="13">
+        
+        <div class="doc">
+            <p>Fetch information for current element</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">b_classification</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">input</span> <span class="o">=</span> <span class="n">classification</span><span class="p">[</span><span class="n">i_batch</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="nb">min</span> <span class="o">=</span> <span class="mf">1e-4</span> <span class="p">,</span><span class="nb">max</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">1e-4</span><span class="p">)</span>
+            <span class="n">b_regression</span>     <span class="o">=</span> <span class="n">regression</span><span class="p">[</span><span class="n">i_batch</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="14">
+        
+        <div class="doc">
+            <p>Filter out invalid GT data, indicated by -1 value</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">b_annotation</span> <span class="o">=</span> <span class="n">gt_BB</span><span class="p">[</span><span class="n">i_batch</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+            <span class="n">b_annotation</span> <span class="o">=</span> <span class="n">b_annotation</span><span class="p">[</span><span class="n">b_annotation</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="15">
+        
+        <div class="doc">
+            <p>Case that no ground truth bounding box is available for this element. This is equal to the else part of the general formula of focal loss. FL(p) = -(1-alpha) * p^gamma * log(1-p) if y != 1 </p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="k">if</span> <span class="n">b_annotation</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">alpha_factor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">b_classification</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+                <span class="n">focal_weight</span> <span class="o">=</span> <span class="n">alpha_factor</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">b_classification</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="16">
+        
+        <div class="doc">
+            <p>Cross Entropy part</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>                <span class="n">bce</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">b_classification</span><span class="p">),</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="17">
+        
+        <div class="doc">
+            <p>Class loss</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>                <span class="n">class_loss</span> <span class="o">=</span> <span class="n">focal_weight</span> <span class="o">*</span> <span class="n">bce</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="18">
+        
+        <div class="doc">
+            <p>append to global lists</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>                <span class="n">classification_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">class_loss</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+                <span class="n">regression_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>  <span class="c1"># Regression does not matter thats why the loss is zero</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="19">
+        
+        <div class="doc">
+            <p>Nothing to do else, skip to next element</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>                <span class="k">continue</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="20">
+        
+        <div class="doc">
+            <p>Case there are bounding boxes given in the ground truth data.  1. Determine target anchors according to their IoU with GT bb</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">IoU_anchors_bbs</span> <span class="o">=</span> <span class="n">calculate_IoU_anchors</span><span class="p">(</span><span class="n">anchors</span><span class="o">=</span><span class="n">anchors</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">gt</span><span class="o">=</span><span class="n">b_annotation</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="21">
+        
+        <div class="doc">
+            <p>Max IoU and index for each anchor box</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">IoU_max_val</span><span class="p">,</span> <span class="n">IoU_max_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">IoU_anchors_bbs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (num_anchors)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="22">
+        
+        <div class="doc">
+            <p>Classification loss according to FocalLoss formula  Compute target elements in anchors</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">targets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">b_classification</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>    <span class="c1"># (num_anchors, num_classes)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="23">
+        
+        <div class="doc">
+            <p>Filter out negative and positive samples in target vector Negative: IoU &lt; 0.4</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">targets</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="n">IoU_max_val</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="24">
+        
+        <div class="doc">
+            <p>Positive: IoU &gt; 0.5</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">positive_indices</span>    <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="n">IoU_max_val</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">n_positive_samples</span>  <span class="o">=</span> <span class="n">positive_indices</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="25">
+        
+        <div class="doc">
+            <p>Per each element in IoU_max_idx, the corresponding box in b_annotation is chosen according to the IoU value. assigned_annotations will contain the bounding box with the highest IoU per anchor box Thus, the shape of assigned_annotations will be (num_anchors, 5) [5: coords + class value]</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">assigned_annotations</span> <span class="o">=</span> <span class="n">b_annotation</span><span class="p">[</span><span class="n">IoU_max_idx</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="26">
+        
+        <div class="doc">
+            <p>Set every positive element in target to zero except the assigned annotations</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">targets</span><span class="p">[</span><span class="n">positive_indices</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">targets</span><span class="p">[</span><span class="n">positive_indices</span><span class="p">,</span> <span class="n">assigned_annotations</span><span class="p">[</span><span class="n">positive_indices</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">long</span><span class="p">()]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="27">
+        
+        <div class="doc">
+            <p>From here compute the actual focal loss </p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">alpha_factor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="c1"># Not 1 - alpha, because all elements with value one are positive, with zero are negative.</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="28">
+        
+        <div class="doc">
+            <p>Assign each element with alpha when value is one, if zero assign with 1-alpha according to focal loss</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">alpha_factor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="n">alpha_factor</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">alpha_factor</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="29">
+        
+        <div class="doc">
+            <p>Same goes for focal_weight</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">focal_weight</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">b_classification</span><span class="p">,</span> <span class="n">b_classification</span><span class="p">)</span>
+            <span class="n">focal_weight</span> <span class="o">=</span> <span class="n">alpha_factor</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">focal_weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="30">
+        
+        <div class="doc">
+            <p>Cross entropy part Note: Using only torch.log without clamp can lead to NaN values. See https://github.com/zylo117/Yet-Another-EfficientDet-Pytorch/issues/717</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">bce</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">targets</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">b_classification</span><span class="p">),</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">targets</span><span class="p">)</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">b_classification</span><span class="p">),</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="31">
+        
+        <div class="doc">
+            <p>Class loss</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">class_loss</span> <span class="o">=</span> <span class="n">focal_weight</span> <span class="o">*</span> <span class="n">bce</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="32">
+        
+        <div class="doc">
+            <p>Every entry which is not -1, which indicates an invalid box, is assigned with the class error, else zero.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">zeros</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">class_loss</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="33">
+        
+        <div class="doc">
+            <p>Append average loss across anchor boxes</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="n">classification_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">class_loss</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">n_positive_samples</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="34">
+        
+        <div class="doc">
+            <p>Regression loss </p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>            <span class="k">if</span> <span class="n">n_positive_samples</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="35">
+        
+        <div class="doc">
+            <p>Compute regression loss only if positive entries are available</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>                <span class="n">assigned_annotations</span> <span class="o">=</span> <span class="n">assigned_annotations</span><span class="p">[</span><span class="n">positive_indices</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="36">
+        
+        <div class="doc">
+            <p>efficientdet style</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>                <span class="n">gt_widths</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">gt_widths</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">gt_heights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">gt_heights</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="37">
+        
+        <div class="doc">
+            <p>Unclear why this was written in this way. It is basically equal to the SmoothL1 loss with beta = 1./9.</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>                <span class="n">_regression_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="n">regression_diff</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">9.0</span><span class="p">),</span>
+                    <span class="mf">0.5</span> <span class="o">*</span> <span class="mf">9.0</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">regression_diff</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="n">regression_diff</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="mf">9.0</span>
+                <span class="p">)</span>
+                <span class="n">regression_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_regression_loss</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">regression_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="p">)</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="section" id="38">
+        
+        <div class="doc">
+            <p>If regression loss is not multiplicated with a certain value it will vanish in the total loss</p>
+        </div>
+        
+        
+        <div class="code">
+            <div class="highlight"><pre><span></span>        <span class="n">regression_loss_multiplicator</span> <span class="o">=</span> <span class="mf">50.0</span>
+        <span class="k">return</span>  <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">classification_loss</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> \
+                <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">regression_loss</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">regression_loss_multiplicator</span>
+</pre></div>
+
+        </div>
+        
+    </div>
+    
+    <div class="footer">
+        <a href="mailto:thomas.buechler@cariad.technology">Contact</a>
+    </div>
+    </div></body></html>
+    

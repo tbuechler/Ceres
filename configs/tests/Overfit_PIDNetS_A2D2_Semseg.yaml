@@ -1,0 +1,42 @@
+experiment:
+  name: "Overfit_PIDNet_SemanticSegmentation_A2D2"
+  on_device: "mps"
+  num_epochs: 1000
+  overwrite_checkpoint: False
+  sample_ratio_per_epoch: 1.0
+
+agent:
+  name: "Overfit_PIDNet_SemSeg_Agent"
+  use_tensorboard: True
+
+network:
+  name: "PIDNet"
+  attributes:
+    compound_coefficient: 0
+    in_channels: 3
+    begin_channels: 32
+    ppm_channels: 96
+    head_channels: 128
+    num_classes: 19
+    blocks_num: 2
+    blocks_num_deep: 3
+
+dataset:
+  name: "A2D2_ds"
+  # Unfortunately, absolute paths are necessary for now.
+  root: "/Users/FIXCCSF/Desktop/Projects/data/camera_lidar_semantic"
+  image_width: 1920
+  image_height: 1208
+  batch_size: 2
+  num_workers: 4
+  ignore_label: 255
+  validation_ratio: 0.1
+  use_cityscape_format: True
+  label_format: "index_cityscape"
+  cam_positions: ['cam_front_center']
+
+model_wrapper:
+  name: "PIDNet_Semseg_ModelWrapper"
+  optimizer:
+    learning_rate: 1e-2
+
