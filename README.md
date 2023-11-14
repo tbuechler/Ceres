@@ -1,11 +1,11 @@
 <img src="assets/ceres_bw.png" align="right" />
 
 # Ceres :nerd_face:
-> A simple template for PyTorch projects focusing on computer vision tasks. Mainly used for creating a trainings and evaluation pipeline.
+> A simple template for PyTorch projects that focus on computer vision tasks. Mainly used for creating a training and evaluation pipeline.
 
 <!-- PROJECT LOGO -->
 <p align="left">
-  <a href="https://git.hub.vwgroup.com/fixccsf/Ceres/tree/main/docs">Explore the docs</a>
+  <a href="https://htmlpreview.github.io/?https://github.com/tbuechler/Ceres/blob/main/docs/index.html">Explore the docs</a>
   ·
   <a href="#Demo">View Demo</a>
   ·
@@ -15,8 +15,8 @@
 </p>
 
 
-Explore our deployment repository: <a href="https://git.hub.vwgroup.com/fixccsf/Spes">Spes</a>. :fire:  
-Auto-generate documentation for python code: <a href="https://git.hub.vwgroup.com/fixccsf/PyDoc">PyDoc</a>. :eyes:
+Explore the deployment repository: <a href="https://git.hub.vwgroup.com/fixccsf/Spes">Spes</a>. :fire:  
+Auto-generate documentation for python code: <a href="https://github.com/tbuechler/PyDoc">PyDoc</a>. :eyes:
 
 
 
@@ -68,26 +68,17 @@ Use the `BLANK_README.md` to get started.
 ## Getting Started
 ### Prerequisites
 
-On the C++ Side of things:
-
-* CUDA 11.3
-* TensorRT ??.??.??
-* cuDNN ??.??.??
-* OpenCV 4.5.2
-* CMake 3.21.*
-
-On the Python Side of things:
-
-* Pytorch 1.10.1+cu113
-* Onnx 1.10.2
-* Numpy 1.21.2
-* cv2 4.5.4
-* hydra-core 1.1.1
-* imgaug 0.4.0
-* Pillow 8.3.1
-* tensorboard 2.7.0
-* visdom 0.1.8.9
-* and more...
+* hydra-core==1.3.2
+* imgaug==0.4.0
+* numpy==1.23.4
+* omegaconf==2.2.3
+* opencv_python==4.6.0.66
+* Pillow==10.1.0
+* PyYAML==6.0.1
+* torch==2.0.1
+* torchvision==0.15.2
+* tqdm==4.64.1
+* webcolors==1.12
 
 ### Customization
 You can customize your project by select
@@ -201,6 +192,4 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## :email: Contact	
 
-Thomas Buechler (G3-57) - thomas.buechler@cariad.technology
-
-Project Link: [https://git.hub.vwgroup.com/fixccsf/Ceres](https://git.hub.vwgroup.com/fixccsf/Ceres)
+If you have questions or remarks, feel free to create an issues or contact me via [email](mailto:t.buechler@outlook.com).
