@@ -17,7 +17,8 @@ class PolyLRScheduler(LRScheduler_Base.LearningRateScheduler):
     \gamma = (1. - \frac{u}{n})^p
     $$
 
-    with $u: \text{update_steps}$, $n: \text{max_iter}$ and $p: \text{poly}$ at every step_size epochs. When last_epoch=-1, sets initial lr as lr.
+    with $u: \text{update_steps}$, $n: \text{max_iter}$ and $p: \text{poly}$ at every step_size
+    epochs. When last_epoch=-1, sets initial lr as lr.
     """
     def __init__(self, 
             optimizer    : torch.optim.Optimizer,

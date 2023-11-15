@@ -5,7 +5,8 @@ from inspect import getframeinfo, stack
 
 def stack_info():
     r""" 
-    Returns a string containing the information of the caller filename, caller function name and the line number where the logging was called. 
+    Returns a string containing the information of the caller filename, caller function name
+    and the line number where the logging was called. 
     """
     snd_caller = getframeinfo(stack()[2][0])
     return str(" [{}/{}:{}]".format(

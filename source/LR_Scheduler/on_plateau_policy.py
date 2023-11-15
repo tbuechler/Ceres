@@ -12,9 +12,13 @@ class OnPlateauLRScheduler(LRScheduler_Base.LearningRateScheduler):
     r"""    
     # Learning Rate Scheduler On Plateau
 
-    Reduce learning rate when a metric has stopped improving. Models often benefit from reducing the learning rate by a factor of 2-10 once learning stagnates. This scheduler reads a metrics quantity and if no improvement is seen for a ‘patience’ number of epochs, the learning rate is reduced (see PyTorch).
+    Reduce learning rate when a metric has stopped improving. Models often benefit from reducing
+    the learning rate by a factor of 2-10 once learning stagnates. This scheduler reads a metrics
+    quantity and if no improvement is seen for a ‘patience’ number of epochs, the learning rate is
+    reduced (see PyTorch).
 
-    This implementation of the OnPlataeuLRScheduler supports only one interpretation of the metric. An increase of the metric value at each step is interpreted as a degradation of the metric.
+    This implementation of the OnPlataeuLRScheduler supports only one interpretation of the metric.
+    An increase of the metric value at each step is interpreted as a degradation of the metric.
     """
     def __init__( self,
             optimizer    : torch.optim.Optimizer,

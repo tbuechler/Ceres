@@ -61,7 +61,8 @@ class ModelWrapper:
             self._load_network(path_to_pth_file=self.cfg.experiment.preload_checkpoint)
         except omegaconf.errors.ConfigAttributeError:
             if self.mode.lower() in ["eval"]:
-                log_error("[ModelWrapper] Preloading checkpoint is mandatory in eval mode. Entry cfg.experiment.preload_checkpoint was not found.")
+                log_error("[ModelWrapper] Preloading checkpoint is mandatory in eval mode. \
+                           Entry cfg.experiment.preload_checkpoint was not found.")
             else:
                 log_warning("[ModelWrapper] No checkpoint was preloaded. Fresh network architecture will be initialized.")
         self.model_arch = network_class(self.cfg).to(torch.device(self.cfg.experiment.on_device))
@@ -71,7 +72,8 @@ class ModelWrapper:
         self.set_loss_function()
 
         self.set_optimizer()
-        assert self.optimizer is not None, "[ModelWrapper] self.optimizer was not initialized yet what is necessary for set_learning_rate_scheduler()."
+        assert self.optimizer is not None, "[ModelWrapper] self.optimizer was not initialized \
+            yet what is necessary for set_learning_rate_scheduler()."
         try:
             self._load_optimizer(path_to_pth_file=self.cfg.experiment.preload_optimizer)
         except omegaconf.errors.ConfigAttributeError:
@@ -82,7 +84,8 @@ class ModelWrapper:
 
     def _setup_dataloader(self) -> None:
         r""" 
-        Setup Dataset and Dataloader defined in the configuration file. Regardless of the mode a dataset and dataloader for training and validation is created. 
+        Setup Dataset and Dataloader defined in the configuration file. Regardless of the mode a
+        dataset and dataloader for training and validation is created. 
         
         After this part was called dataset and dataloader are initialized and accessible via
         
@@ -118,17 +121,21 @@ class ModelWrapper:
                         try:
                             dataset_class = globals()[dataset_class_str]
                         except KeyError:
-                            log_error("[ModelWrapper/MultiDataHandler] Dataset class {} could not be found under source/datasets/.".format(dataset_class_str))
+                            log_error("[ModelWrapper/MultiDataHandler] Dataset class {} could not \
+                                       be found under source/datasets/.".format(dataset_class_str))
                         with omegaconf.open_dict(self.cfg):
                             self.cfg.multi_dataset[dataset_class_str].name = dataset_class_str
                         ds[dataset_class_str] = dataset_class(self.cfg.multi_dataset[dataset_class_str])
                 except omegaconf.errors.ConfigAttributeError:
-                    log_error("[ModelWrapper/MultiDataHandler] Missing attribute to specify all datasets cfg.datasets.")
+                    log_error("[ModelWrapper/MultiDataHandler] Missing attribute to specify all \
+                               datasets cfg.datasets.")
                 self.dataset          = multi_dataset_class(cfg=self.cfg.multi_dataset, datasets=ds)
             except omegaconf.errors.ConfigAttributeError:
-                log_error("[ModelWrapper] Missing attribute in configuration file cfg.multi_dataset.name.")
+                log_error("[ModelWrapper] Missing attribute in configuration file \
+                           cfg.multi_dataset name.")
             except KeyError:
-                log_error("[ModelWrapper] Multi Dataset class {} could not be found under source/datasets/.".format(dataset_class_str))
+                log_error("[ModelWrapper] Multi Dataset class {} could not be found under \
+                          source/datasets/.".format(dataset_class_str))
 
         self.dataset_valid = None
         if self.mode in ['train']:
@@ -138,7 +145,8 @@ class ModelWrapper:
                 log_info("[BaseAgent] Create instance of separate validation dataset {}.".format(dataset_valid_class_str))
                 self.dataset_valid      = dataset_valid_class(cfg=self.cfg.dataset_valid)
             except omegaconf.errors.ConfigAttributeError:
-                log_info("[BaseAgent] No different instance created for validation dataset. Try to split up the only one dataset available...")
+                log_info("[BaseAgent] No different instance created for validation dataset. \
+                         Try to split up the only one dataset available...")
 
         else:
             if self.mode.lower() in ["eval"]:
@@ -227,7 +235,8 @@ class ModelWrapper:
 
     def _load_network(self, path_to_pth_file: str) -> None:
         r"""
-        Loads a pretrained network to the process. This method is called in the beginning of each process and will basically do nothing if no model is given.
+        Loads a pretrained network to the process. This method is called in the beginning of 
+        each process and will basically do nothing if no model is given.
         """
         try:
             checkpoint = torch.load(f=path_to_pth_file, map_location=torch.device('cpu'))
@@ -251,7 +260,8 @@ class ModelWrapper:
         try:
             self.optimizer.load_state_dict(checkpoint['optimizer'])
         except KeyError:
-            log_warning("[ModelWrapper] Key 'optimizer' cannot be found in .pht file. The optimizer will be reinitialized with fresh parameters.")
+            log_warning("[ModelWrapper] Key 'optimizer' cannot be found in .pht file. \
+                        The optimizer will be reinitialized with fresh parameters.")
 
     def _print_network(self) -> None:
         r"""
@@ -281,7 +291,9 @@ class ModelWrapper:
         
     def update_learning_rate(self, **kwargs) -> None:
         r"""
-        **Abstract**: Updates the learning rate based on a predefined approach. This method is **NOT** called from the BaseAgent automatically. This method must be triggered manually within the custom agent using the available abstract methods.
+        **Abstract**: Updates the learning rate based on a predefined approach. This method is
+        **NOT** called from the BaseAgent automatically. This method must be triggered manually
+        within the custom agent using the available abstract methods.
         """
         if self.mode.lower() in ["eval"]:
             pass
@@ -290,7 +302,9 @@ class ModelWrapper:
 
     def set_batch(self, batch) -> None:
         r"""
-        **Abstract**: Processes the batch coming from the dataset and passed from the agent and sets the internal input member accordingly. This needs to be implemented by the user, since the structure of a batch from different datasets can be different.
+        **Abstract**: Processes the batch coming from the dataset and passed from the agent and
+        sets the internal input member accordingly. This needs to be implemented by the user, since
+        the structure of a batch from different datasets can be different.
         """
         raise NotImplementedError
 
@@ -302,7 +316,8 @@ class ModelWrapper:
 
     def compute_loss(self) -> None:
         r""" 
-        **Abstract**: Method to actually compute the loss value using the previously initialized loss functions. After the call of this method `self.final_loss` must be set. 
+        **Abstract**: Method to actually compute the loss value using the previously initialized
+        loss functions. After the call of this method `self.final_loss` must be set. 
         """
         raise NotImplementedError
 

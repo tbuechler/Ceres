@@ -18,7 +18,8 @@ class TransformerLRScheduler(LRScheduler_Base.LearningRateScheduler):
     lr = d_{model}^{-0.5} \cdot min(step\_num^{-0.5}, step\_num \cdot warmup\_steps^{1-5}).
     $$
 
-    Thus, the learning rate is increased linearly for the first $warmup\_steps$ training steps, and decreased thereafter proportionally to the inverse square root of the $step\_num$.
+    Thus, the learning rate is increased linearly for the first $warmup\_steps$ training steps, and
+    decreased thereafter proportionally to the inverse square root of the $step\_num$.
     """
     def __init__(self,
         optimizer       : torch.optim.Optimizer,

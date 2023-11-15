@@ -40,7 +40,8 @@ class ConfusionMatrix(nn.Module):
 
     def _set_and_filter_params(self, prediction: torch.Tensor, groundtruth: torch.Tensor) -> None:
         r""" 
-        Adapts the prediction and groundtruth input for further computation. Additionally, the input is adapted according to the value of `ignore_value`.
+        Adapts the prediction and groundtruth input for further computation. Additionally, the
+        input is adapted according to the value of `ignore_value`.
         """
         self.current_prediction = torch.argmax(prediction, dim=1).flatten()
         self.current_groundtruth = groundtruth.flatten()

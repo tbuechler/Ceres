@@ -1,0 +1,3 @@
+**Completely under construction.**
+
+So far, some loss functions have only been sparodically implemented, tested and used in different tryouts. A whole cleanup is still necessary...

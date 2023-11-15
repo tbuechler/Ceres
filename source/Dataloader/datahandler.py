@@ -14,22 +14,28 @@ class DataHandler(Dataset):
     r"""
     # DataHandler
 
-    Base class for custom datasets. Datasets are meant to load your data as you want and need. Your custom dataset will be fetched by the agent automatically and used within the session batch-wise.
+    Base class for custom datasets. Datasets are meant to load your data as you want and need. 
+    Your custom dataset will be fetched by the agent automatically and used within the session
+    batch-wise.
     """
     def __init__(self, cfg_dataset: DictConfig) -> None:
         r"""
         Args:
         
-        * `cfg (omegaconf.DictConfig)`: 
-            * Hydra based configuration dictionary based on the given configuration .yaml file. **Only the subset cfg object for the dataset is available at this point.**
+        * `cfg (omegaconf.DictConfig)`:
+            * Hydra based configuration dictionary based on the given configuration .yaml file.
+            **Only the subset cfg object for the dataset is available at this point.**
         """
         super().__init__()
         self.cfg = cfg_dataset
 
-        ## Member of each dataset which will hold the information of all files, i.e. paths to input images or/and labels.
+        ## Member of each dataset which will hold the information of all files, i.e. paths 
+        ## to input images or/and labels.
         self.filenames = []
 
-        ## If this dataset is not only used for training but also used for validation (so they is no separate dataset defined), both member will hold the information which indices of `self.filenames` belong to the training and validation set.
+        ## If this dataset is not only used for training but also used for validation (so they is
+        ## no separate dataset defined), both member will hold the information which indices of
+        ## `self.filenames` belong to the training and validation set.
         self.indices_train = []
         self.indices_valid = []
 
@@ -61,13 +67,16 @@ class DataHandler(Dataset):
 
     def search_files(self) -> None:
         r"""
-        **Abstract**: Search for all files/data in a given root directory. Either search for all information using a certain folder structure or use a filelist, defined in the configuration file. This needs to be implemented by the custom dataset.
+        **Abstract**: Search for all files/data in a given root directory. Either search for all 
+        information using a certain folder structure or use a filelist, defined in the 
+        configuration file. This needs to be implemented by the custom dataset.
         """
         raise NotImplementedError
 
     def validate_files(self) -> None:
         r"""
-        Validates that none of all found files is corrupted and can be read correctly. If not, they will be removed from filenames beforehand.
+        Validates that none of all found files is corrupted and can be read correctly. If not, 
+        they will be removed from filenames beforehand.
         """
         remove_idxs = []
         for idx, file_tuple in enumerate(self.filenames):
@@ -94,7 +103,9 @@ class DataHandler(Dataset):
 
     def split_train_valid(self):
         r"""
-        Splits the dataset into two different subsets that can be used for training and validation. This is done by shuffling the file set randomly and compute the separator according to the validation/train split defined with `self.cfg.validation_ratio`.
+        Splits the dataset into two different subsets that can be used for training and validation.
+        This is done by shuffling the file set randomly and compute the separator according to the
+        validation/train split defined with `self.cfg.validation_ratio`.
         """
         assert len(self) > 0, "[Dataset/{}] Split into subsets not possible \
                                             since dataset is empty.".format(self.cfg.name)
@@ -122,7 +133,9 @@ class DataHandler(Dataset):
         * `out_dir (str)`: Path where the file is dumped to.
         * `filename (str)`: Name of the csv file.
         """
-        ## Check if only this datahandler is used for train and validation by checking the length of the indices list. If they were not set (empty) another dataset was used originally for validation.
+        ## Check if only this datahandler is used for train and validation by checking the length
+        ## of the indices list. If they were not set (empty) another dataset was used originally 
+        ## for validation.
         is_splitted = (len(self.indices_train) > 0) and (len(self.indices_valid) > 0)
 
         ## Dataset information can be dumped out only if `self.filenames` contains file paths so far.
@@ -156,14 +169,17 @@ class MultiDataHandler(Dataset):
     r"""
     # MultiDataHandler
 
-    Base class for custom multi datasets that can merge multiple datasets into one. Datasets are meant to load your data as you want and need. Your custom dataset will be fetched by the agent automatically and used within the session batch-wise.
+    Base class for custom multi datasets that can merge multiple datasets into one. Datasets are
+    meant to load your data as you want and need. Your custom dataset will be fetched by the agent
+    automatically and used within the session batch-wise.
     """
     def __init__(self, cfg: DictConfig, datasets: dict) -> None:
         r"""
         Args:
         
         * `cfg (omegaconf.DictConfig)`: 
-            * Hydra based configuration dictionary based on the given configuration .yaml file. **Only the subset cfg object for the dataset is available at this point.**
+            * Hydra based configuration dictionary based on the given configuration .yaml file.
+            **Only the subset cfg object for the dataset is available at this point.**
         * `datasets (dict)`:
             * Dictionary that stores all datasets to create a MultiDatahandler
               out of it. For each key (dataset name) a class object is given 
@@ -175,9 +191,12 @@ class MultiDataHandler(Dataset):
 
         ## Create mapping from given index to a specfic dataset.
         self.idx2dataset = [(d_str, d_idx) for d_str in self.datasets.keys() for d_idx in range(len(self.datasets[d_str]))]
-        assert len(self) == len(self.idx2dataset), "[MultiDataHandler] Number of Index to Dataset mapping does not match length of MultiDataset."
+        assert len(self) == len(self.idx2dataset), \
+            "[MultiDataHandler] Number of Index to Dataset mapping does not match length of MultiDataset."
 
-        ## If this dataset is not only used for training but also used for validation (so they is no separate dataset defined), both member will hold the information which indices of `self.filenames` belong to the training and validation set.
+        ## If this dataset is not only used for training but also used for validation (so they is
+        ## no separate dataset defined), both member will hold the information which indices of
+        ## `self.filenames` belong to the training and validation set.
         self.indices_train = []
         self.indices_valid = []
 
@@ -190,14 +209,17 @@ class MultiDataHandler(Dataset):
 
     def __getitem__(self, index: int) -> dict:
         r""" 
-        **Abstract**: Fetches current item according to given index. This needs to be implemented by custom dataset. If not, an error is thrown.
+        **Abstract**: Fetches current item according to given index. This needs to be implemented
+        by custom dataset. If not, an error is thrown.
         """
         raise NotImplementedError
 
 
     def split_train_valid(self):
         r"""
-        Splits the dataset into two different subsets that can be used for training and validation. This is done by shuffling the file set randomly and compute the separator according to the validation/train split defined with `self.cfg.validation_ratio`.
+        Splits the dataset into two different subsets that can be used for training and validation.
+        This is done by shuffling the file set randomly and compute the separator according to the
+        validation/train split defined with `self.cfg.validation_ratio`.
         """
         assert len(self) > 0, "[DataHandel] Split into subsets not possible \
                                             since dataset is empty."
@@ -214,7 +236,8 @@ class MultiDataHandler(Dataset):
         except omegaconf.errors.ConfigAttributeError:
             log_error("[DataHandler] cfg.dataset.validation_ratio is not defined for splitting dataset into two subsets.")
         
-        assert len(self.indices_train) > 0 or len(self.indices_valid) > 0, "[DataHandler] After subset split one array of indices must not be empty."
+        assert len(self.indices_train) > 0 or len(self.indices_valid) > 0, \
+            "[DataHandler] After subset split one array of indices must not be empty."
 
     def dump_datahandler(self, out_dir: str, file_name: str):
         r"""
@@ -225,7 +248,9 @@ class MultiDataHandler(Dataset):
         * `out_dir (str)`: Path where the file is dumped to.
         * `filename (str)`: Name of the csv file.
         """
-        ## Check if only this datahandler is used for train and validation by checking the length of the indices list. If they were not set (empty) another dataset was used originally for validation.
+        ## Check if only this datahandler is used for train and validation by checking the length
+        ## of the indices list. If they were not set (empty) another dataset was used originally
+        ## for validation.
         is_splitted = (len(self.indices_train) > 0) and (len(self.indices_valid) > 0)
 
         ## Dataset information can be dumped out only if `self.filenames` of all datasets contain file paths.

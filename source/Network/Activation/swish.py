@@ -7,9 +7,11 @@ class Swish(nn.Module):
     r"""
     # Swish
 
-    Definition of activation function can be found in original paper 'Sigmoid-Weighted Linear Units for Neural Network Function Approximation in Reinforcement Learning'.
+    Definition of activation function can be found in original paper 'Sigmoid-Weighted Linear Units
+    for Neural Network Function Approximation in Reinforcement Learning'.
 
-    Using the actual PyTorch implementation `nn.SiLU()` is not possible because it is not supported for the ONNX export yet.
+    Using the actual PyTorch implementation `nn.SiLU()` is not possible because it is not supported
+    for the ONNX export yet.
     """
     __constants__ = ['inplace']
     inplace: bool

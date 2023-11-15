@@ -1,7 +1,7 @@
 <img src="assets/ceres_bw.png" align="right" />
 
 # Ceres :nerd_face:
-> A simple template for PyTorch projects that focus on computer vision tasks. Mainly used for creating a training and evaluation pipeline.
+> A simple PyTorch project that focus on computer vision tasks. Mainly used for creating a training and evaluation pipeline.
 
 <!-- PROJECT LOGO -->
 <p align="left">
@@ -23,7 +23,12 @@ Auto-generate documentation for python code: <a href="https://github.com/tbuechl
 <br>
 
 
+## NOTE 
+This project is work in progress since it will be moved from a private repository to make it public. The documentation can be old/wrong at some points and the implementation not clean as it has to be. More parts/refinements will be added with time, i.e.:
 
+1. Azure ML connection
+2. Docker containerization
+3. More models and corresponding custom classes that need to be cleared first...
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project

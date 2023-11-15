@@ -24,7 +24,8 @@ class SynthiaSF_ds(DataHandler):
     # SynthiaSF Dataset
 
     Dataset for the Synthia-SF dataset (https://synthia-dataset.net).
-    Currently it does only support the task of Stereo 3D-Reconstruction and thus will only provide the left and right stereo image and the depth/disparity maps for each of these cameras.
+    Currently it does only support the task of Stereo 3D-Reconstruction and thus will only 
+    provide the left and right stereo image and the depth/disparity maps for each of these cameras.
     """
     ## Extrinsic parameters for the stereo setup (Coming from the 
     ## corresponding paper).
@@ -36,7 +37,8 @@ class SynthiaSF_ds(DataHandler):
         Args:
         
         * `cfg (omegaconf.DictConfig)`:
-            * Hydra based configuration dictionary based on the given configuration .yaml file. **Only the subset cfg object for the dataset is available at this point.**
+            * Hydra based configuration dictionary based on the given configuration .yaml file.
+            **Only the subset cfg object for the dataset is available at this point.**
         """
         super().__init__(cfg)
 
@@ -47,10 +49,15 @@ class SynthiaSF_ds(DataHandler):
     def __getitem__(self, index: int):
         r"""
         Creates a sample from the dataset for a specific pair of data 
-        using an index. It will load both images using PIL and the raw depth map. The depth map will be converted into an useable format and disparity maps will be created out of it in combination with the extrinsic parameters. Furthermore, possible data augmentation and the transformation into PyTorch Tensors will be done.
+        using an index. It will load both images using PIL and the raw depth map. The depth map
+        will be converted into an useable format and disparity maps will be created out of it in
+        combination with the extrinsic parameters. Furthermore, possible data augmentation and the
+        transformation into PyTorch Tensors will be done.
                 
         Returns:
-            Dictionary sample in form of { 'img_left' : img_left, 'img_right' : img_right, 'depth_left' : depth_left, 'depth_right' : depth_right, 'disp_left' : disp_left, 'disp_right' : disp_right }.
+            Dictionary sample in form of { 'img_left' : img_left, 'img_right' : img_right,
+            'depth_left' : depth_left, 'depth_right' : depth_right, 'disp_left' : disp_left,
+            'disp_right' : disp_right }.
         """
         img_left    = self._load_image(img_path=self.filenames[index][0])
         img_right   = self._load_image(img_path=self.filenames[index][1])
@@ -86,7 +93,8 @@ class SynthiaSF_ds(DataHandler):
 
     def _load_depth(self, depth_path: str):
         r""" 
-        Loads the given three channel depth map that is furthermore converted according to the documentation to achieve an one channel depth map. 
+        Loads the given three channel depth map that is furthermore converted according to the
+        documentation to achieve an one channel depth map. 
         """
         img          = np.asarray(Image.open(depth_path))
         depth_matrix = (img[:, :, 0] + (img[:, :, 1] * 256.) + (img[:, :, 2] * 256. * 256.)) / ((256. * 256. * 256.) - 1.) * 1000.

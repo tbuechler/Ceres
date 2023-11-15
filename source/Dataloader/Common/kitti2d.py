@@ -34,7 +34,8 @@ class Kitti2D_ds(DataHandler):
         Args:
         
         * `cfg (omegaconf.DictConfig)`:
-            * Hydra based configuration dictionary based on the given configuration .yaml file. **Only the subset cfg object for the dataset is available at this point.**
+            * Hydra based configuration dictionary based on the given configuration .yaml file.
+            **Only the subset cfg object for the dataset is available at this point.**
         """
         super().__init__(cfg)
 
@@ -52,7 +53,8 @@ class Kitti2D_ds(DataHandler):
     def __getitem__(self, index: int):
         r"""
         Creates a sample from the dataset for a specific pair of data 
-        using an index. It will load the image using PIL and the annotation file, apply data augmentation and convert sample entries into PyTorch Tensors.
+        using an index. It will load the image using PIL and the annotation file, 
+        apply data augmentation and convert sample entries into PyTorch Tensors.
                 
         Returns:
             Dictionary sample in form of {'img' : img, 'annotation' : annotation}.
@@ -137,14 +139,21 @@ class Kitti2D_ds(DataHandler):
     @staticmethod
     def collate_fn(samples: dict):
         r"""
-        This custom overload of the collate_fn is necessary and must be passed to the Dataloader to handle variable size of bounding boxes per image in one batch.
+        This custom overload of the collate_fn is necessary and must be passed to the Dataloader
+        to handle variable size of bounding boxes per image in one batch.
         
         Args:
 
         * `samples (list[dict])`:
-            * List of samples (elements of one batch) containing the image and the corresponding annotation information of it.
+            * List of samples (elements of one batch) containing the image and the corresponding
+            annotation information of it.
 
-        The collate_fn receives a list of tuples if your __getitem__ function from a Dataset subclass returns a tuple, or just a normal list if your Dataset subclass returns only one element. Its main objective is to create your batch without spending much time implementing it manually. Try to see it as a glue that you specify the way examples stick together in a batch. If you don’t use it, PyTorch only put batch_size examples together as you would using torch.stack (not exactly it, but it is simple like that).
+        The collate_fn receives a list of tuples if your __getitem__ function from a Dataset
+        subclass returns a tuple, or just a normal list if your Dataset subclass returns only one
+        element. Its main objective is to create your batch without spending much time implementing
+        it manually. Try to see it as a glue that you specify the way examples stick together in a
+        batch. If you don’t use it, PyTorch only put batch_size examples together as you would
+        using torch.stack (not exactly it, but it is simple like that).
         """
         imgs  = [sample['img'] for sample in samples]
         annos = [sample['annotation'] for sample in samples]
@@ -153,17 +162,22 @@ class Kitti2D_ds(DataHandler):
         ## $[(C, H, W), ...., (C, H, W)] \rightarrow (B, C, H, W)$
         imgs = torch.stack(imgs, axis=0)
 
-        ## Get the maximum number of bounding boxes for the incoming list of annotation to create a batch with a constant number of bounding boxes.
+        ## Get the maximum number of bounding boxes for the incoming list of annotation to 
+        ## create a batch with a constant number of bounding boxes.
         max_anno = max(anno.shape[0] for anno in annos)
 
-        ## If the number of bounding boxes is greater than zero fill up a new tensor. Annotations which have been "padded" with new bounding boxes to get a constant bounding box number are annotated with -1 and are invalid.
+        ## If the number of bounding boxes is greater than zero fill up a new tensor. Annotations
+        ## which have been "padded" with new bounding boxes to get a constant bounding box number 
+        ## are annotated with -1 and are invalid.
         if max_anno > 0:
             new_annos = torch.ones((len(annos), max_anno, 5)) * -1
             for idx, anno in enumerate(annos):
                 if anno.shape[0] > 0:
                     new_annos[idx, :anno.shape[0], :] = anno
 
-        ## If no bounding boxes were found in the current batch, which can happen if the image has nothing to detect, than the tensor is filled with invalid bounding boxes, indicated by the value -1.
+        ## If no bounding boxes were found in the current batch, which can happen if the image has 
+        ## nothing to detect, than the tensor is filled with invalid bounding boxes, indicated by
+        ## the value -1.
         else:
             new_annos = torch.ones((len(annos), 1, 5)) * -1
 
@@ -175,7 +189,8 @@ class Kitti2D_ds(DataHandler):
 
 class Resize(object):
     r"""
-    Transformation instance to resize image and adapt annotations accordingly."""
+    Transformation instance to resize image and adapt annotations accordingly.
+    """
     def __init__(self, img_size: Tuple[int, int]) -> None:
         r"""
         Args:

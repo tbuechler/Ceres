@@ -60,7 +60,9 @@ class Overfit_PIDNet_SemSeg_Agent(BaseAgent):
             show_image(
                 writer=self.tb_log, 
                 tag="GroundTruth Train", 
-                image_tensor=self.model_wrapper.dataset.labelTensor2colorTensor(self.model_wrapper.ground_truth[0][0].detach().cpu()),
+                image_tensor=self.model_wrapper.dataset.labelTensor2colorTensor(
+                        self.model_wrapper.ground_truth[0][0].detach().cpu()
+                    ),
                 global_step=self.idx_batch
             )
 
@@ -90,7 +92,9 @@ class Overfit_PIDNet_SemSeg_Agent(BaseAgent):
             show_image(
                 writer=self.tb_log, 
                 tag="GroundTruth", 
-                image_tensor=self.model_wrapper.dataset.labelTensor2colorTensor(self.model_wrapper.ground_truth[0][0].detach().cpu()),
+                image_tensor=self.model_wrapper.dataset.labelTensor2colorTensor(
+                        self.model_wrapper.ground_truth[0][0].detach().cpu()
+                    ),
                 global_step=self.idx_batch
             )
 

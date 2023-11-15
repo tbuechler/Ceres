@@ -26,18 +26,26 @@ class PIDNet_Semseg_ModelWrapper(ModelWrapper):
 
     def set_batch(self, batch: torch.Tensor) -> None:
         r"""
-        In this method the incoming batch from the dataset is processed. If the batch is wrongly used, i.e. by using a wrong key for the dictionary, it will log an error and terminate the process.
+        In this method the incoming batch from the dataset is processed. If the batch is wrongly
+        used, i.e. by using a wrong key for the dictionary, it will log an error and terminate the
+        process.
 
         Args:
 
         * `batch (dict(torch.Tensor))`:
             * Incoming batch from the dataset
-            * The batch contains the image and the pixelwise labeled image {'img_left' : img, 'label' : label}.
+            * The batch contains the image and the pixelwise labeled image {'img_left' : img,
+            'label' : label}.
         """
         try:
-            edge = torch.stack([labImg2EdgeTorch(batch['label'][i]) for i in range(batch['label'].shape[0])]).type(torch.float32)
+            edge = torch.stack([
+                labImg2EdgeTorch(batch['label'][i]) for i in range(batch['label'].shape[0])
+                ]).type(torch.float32)
             self.input = (batch['img_left'].to(torch.device(self.cfg.experiment.on_device)),)
-            self.ground_truth = (batch['label'].to(torch.device(self.cfg.experiment.on_device)), edge.to(torch.device(self.cfg.experiment.on_device)))
+            self.ground_truth = (
+                batch['label'].to(torch.device(self.cfg.experiment.on_device)), 
+                edge.to(torch.device(self.cfg.experiment.on_device))
+            )
         except KeyError:
             log_error("[ModelWrapper] Unsupported access to current batch format. Check how the batch is made up in the dataset.")
         except omegaconf.errors.ConfigAttributeError:
@@ -45,9 +53,11 @@ class PIDNet_Semseg_ModelWrapper(ModelWrapper):
 
     def set_loss_function(self):
         r"""
-        Setting the loss function for the semantic segmentation task. In this case three different loss functions are being used for training:
+        Setting the loss function for the semantic segmentation task. In this case three different
+        loss functions are being used for training:
 
-        1. Boundary Loss used at the D output which is basically a weighted Cross Entropy loss to overcome the imbalanced problem at boundaries.
+        1. Boundary Loss used at the D output which is basically a weighted Cross Entropy loss to
+        overcome the imbalanced problem at boundaries.
         2. Cross Entropy loss for the output from the P and I layer.
         3. Cross Entropy loss with awareness of boundary used at I and D layer.
         """
@@ -66,7 +76,8 @@ class PIDNet_Semseg_ModelWrapper(ModelWrapper):
 
     def compute_loss(self):
         r"""
-        Setting `self.final_loss` by computing the loss value. Previously defined functions from `set_loss_function()` will be used for that.
+        Setting `self.final_loss` by computing the loss value. Previously defined functions from
+        `set_loss_function()` will be used for that.
         
         $$ Loss = \lambda_0 l_\lambda + \lambda_1 l_1 + \lambda_2 l_2 + \lambda_3 l_3$$
         where
@@ -90,9 +101,12 @@ class PIDNet_Semseg_ModelWrapper(ModelWrapper):
 
     def set_optimizer(self):
         r"""
-        Initializing of the optimizer. In this case the Adam optimizer with wight decay is being used. Required information that needs to be defined in the configuration file is the start point of the learning rate.
+        Initializing of the optimizer. In this case the Adam optimizer with wight decay is being
+        used. Required information that needs to be defined in the configuration file is the start
+        point of the learning rate.
 
-        Since this information is part of the optimizer the entry should `self.cfg.model_wrapper.optimizer.learning_rate`.
+        Since this information is part of the optimizer the entry should 
+        `self.cfg.model_wrapper.optimizer.learning_rate`.
         """
         self.optimizer = torch.optim.AdamW(
             params      =   self.model_arch.parameters(),
@@ -101,9 +115,11 @@ class PIDNet_Semseg_ModelWrapper(ModelWrapper):
 
     def set_learning_rate_scheduler(self):
         r""" 
-        Initializes the scheduler for the learning rate. In this case the OnPlateauLRScheduler is used that also takes into account the validation progress.
+        Initializes the scheduler for the learning rate. In this case the OnPlateauLRScheduler is
+        used that also takes into account the validation progress.
 
-        Additionally, a warmup phase was implemented for LRScheduler which is performed for the first 25 steps.
+        Additionally, a warmup phase was implemented for LRScheduler which is performed for the
+        first 25 steps.
         """
         assert self.optimizer is not None, "[ModelWrapper] Optimizer has to be initialized before."
         self.lr_scheduler = OnPlateauLRScheduler(
@@ -118,9 +134,12 @@ class PIDNet_Semseg_ModelWrapper(ModelWrapper):
 
     def update_learning_rate(self, **kwargs):
         r""" 
-        This function is called to update the learning rate according to the defined learning rate scheduler. Since OnPlateauLRScheduler is used which requires the information about the validation loss, the key-value pair `mean_valid_loss` must be given to the method call.
+        This function is called to update the learning rate according to the defined learning rate
+        scheduler. Since OnPlateauLRScheduler is used which requires the information about the
+        validation loss, the key-value pair `mean_valid_loss` must be given to the method call.
 
-        Since the agent itself does not call this function by default, in used custom agent class this method is called after each validation step (after each epoch). 
+        Since the agent itself does not call this function by default, in used custom agent class
+        this method is called after each validation step (after each epoch). 
         """
         self.lr_scheduler.step(kwargs['mean_valid_loss'])
 

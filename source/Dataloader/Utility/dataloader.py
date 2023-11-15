@@ -17,9 +17,12 @@ def ds2dl(cfg: DictConfig, ds: DataHandler, indices: int=None, train: bool=False
     * `ds (DataHandler)`: 
         * Instantiated dataset object.
     * `indices (list[int])`: 
-        * If the dataset was splitted the corresponding list of indices for the DataLoader must be given as well. No effect if two different datasets are used.
+        * If the dataset was splitted the corresponding list of indices for the DataLoader must be
+        given as well. No effect if two different datasets are used.
     * `train (bool)`: 
-        * Indicates whether the DataLoader is used for training oder evaluation/validation. This is unfortunately necessary to catch missing configuration entries, since it is not mandatory to define dataset_valid but dataset needs to be defined.
+        * Indicates whether the DataLoader is used for training oder evaluation/validation. This is
+         unfortunately necessary to catch missing configuration entries, since it is not mandatory
+         to define dataset_valid but dataset needs to be defined.
 
     Returns:
 
@@ -31,9 +34,19 @@ def ds2dl(cfg: DictConfig, ds: DataHandler, indices: int=None, train: bool=False
     ##
     ## The following combinations can happen:
     ##
-    ## 1. The dataloader is meant for training. Then it is expected to define `batch_size` in your configuration file. Otherwise it will throw an error and terminate.
-    ## 2. The dataloader is meant for validation/evaluation and the dataset used in this call was split before, so the dataset is used for training **and** validation. This means that `indices` is not empty. In this case it will try to get the batch size by trying to access `cfg.batch_size_valid` (Because `batch_size` should be used for training if Dataset is used for training and validation). IF this entry was not defined in the configuration file, Hydra will throw an error and the used batch size is set to 1.
-    ## 3. The dataloader is meant for validation/evaluation and the dataset used in this call is a separate instance compared to the dataset used for training - so no split has been performed before. This leads to `indices` being `None`. If this is the case, it will uses `batch_size` defined in your `dataset_validation` part of your configuration file. If this entry was not defined for your validation set, it will set the batch size to 1.
+    ## 1. The dataloader is meant for training. Then it is expected to define `batch_size` in your
+    ## configuration file. Otherwise it will throw an error and terminate.
+    ## 2. The dataloader is meant for validation/evaluation and the dataset used in this call was
+    ## split before, so the dataset is used for training **and** validation. This means that
+    ## `indices` is not empty. In this case it will try to get the batch size by trying to access
+    ## `cfg.batch_size_valid` (Because `batch_size` should be used for training if Dataset is used
+    ## for training and validation). IF this entry was not defined in the configuration file, Hydra
+    ## will throw an error and the used batch size is set to 1.
+    ## 3. The dataloader is meant for validation/evaluation and the dataset used in this call is a
+    ## separate instance compared to the dataset used for training - so no split has been performed
+    ## before. This leads to `indices` being `None`. If this is the case, it will uses `batch_size`
+    ## defined in your `dataset_validation` part of your configuration file. If this entry was not
+    ## defined for your validation set, it will set the batch size to 1.
     try:
         batch_size = cfg.batch_size 
         if indices is not None and not train:
@@ -44,7 +57,8 @@ def ds2dl(cfg: DictConfig, ds: DataHandler, indices: int=None, train: bool=False
         else:
             batch_size = 1
 
-    ## To enable multi-process dataloading define num_worker in your configuration dataset section. By default this value is set to four times of your number of GPUs in your system. 
+    ## To enable multi-process dataloading define num_worker in your configuration dataset section.
+    ## By default this value is set to four times of your number of GPUs in your system. 
     try:
         num_worker = cfg.num_worker
     except omegaconf.errors.ConfigAttributeError:
@@ -57,7 +71,8 @@ def ds2dl(cfg: DictConfig, ds: DataHandler, indices: int=None, train: bool=False
     else:
         shuffle = True
 
-    ## If you have implemented a custom collate_fn in your dataset (custom DataHandler), it will be used in this case. If not, the default process by PyTorch is being used.
+    ## If you have implemented a custom collate_fn in your dataset (custom DataHandler), it will be
+    ## used in this case. If not, the default process by PyTorch is being used.
     try:
         collate_fn = ds.collate_fn
     except AttributeError:
@@ -96,8 +111,11 @@ def create_dataloader(cfg: DictConfig, ds1: DataHandler, ds2: DataHandler=None, 
 
     ## Distinguish between two cases:
     ##
-    ## 1. The second dataset `ds2` is not given and thus `None`. In this case `ds1` must be splitted before and two dataloader instances are created with the same dataset instance but considering the indices lists.
-    ## 2. The second dataset `ds2` is given. In this case two dataloader instaces are created by using `ds1` for the training set and `ds2` for the validation set.
+    ## 1. The second dataset `ds2` is not given and thus `None`. In this case `ds1` must be
+    ## splitted before and two dataloader instances are created with the same dataset instance but
+    ## considering the indices lists.
+    ## 2. The second dataset `ds2` is given. In this case two dataloader instaces are created by
+    ## using `ds1` for the training set and `ds2` for the validation set.
     ds_str = "dataset" if not use_multidataset else "multi_dataset"
     if ds2 is None:
         dl1 = ds2dl(cfg=cfg[ds_str], ds=ds1, indices=ds1.indices_train, train=True)

@@ -45,7 +45,8 @@ class Cityscape_ds(DataHandler):
         Args:
         
         * `cfg (omegaconf.DictConfig)`:
-            * Hydra based configuration dictionary based on the given configuration .yaml file. **Only the subset cfg object for the dataset is available at this point.**
+            * Hydra based configuration dictionary based on the given configuration .yaml file.
+            **Only the subset cfg object for the dataset is available at this point.**
         """
         super().__init__(cfg)
 
@@ -65,7 +66,8 @@ class Cityscape_ds(DataHandler):
             ])
         except omegaconf.errors.ConfigAttributeError:
             self.transforms = None
-            log_warning("Missing values for mean (normalization_mean) and std (normalization_std) for normalization process. Continue without transformation...")
+            log_warning("Missing values for mean (normalization_mean) and std (normalization_std) \
+                        for normalization process. Continue without transformation...")
 
     def __getitem__(self, index: int):
         r"""
@@ -76,7 +78,8 @@ class Cityscape_ds(DataHandler):
         the disparity map as 8-bit single channel images.
                 
         Returns:
-            Dictionary sample in form of {'img_left' : img_left, 'img_right' : img_right, 'disparity' : disparity, 'label' : label, 'camera' : camera_conf }
+            Dictionary sample in form of {'img_left' : img_left, 'img_right' : img_right,
+            'disparity' : disparity, 'label' : label, 'camera' : camera_conf }
         """
 
         img_left    = self._load_image(img_path=self.filenames[index][0])

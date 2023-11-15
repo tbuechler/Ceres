@@ -38,7 +38,8 @@ def show_image(
     * `global_step (int)`:
         * Step number at which the image was logged.    
     """
-    assert len(image_tensor.shape) == 3, "show_image() can only be used with an input tensor of shape CxHxW, but length of input tensor is {}.".format(len(image_tensor.shape))
+    assert len(image_tensor.shape) == 3, "show_image() can only be used with an input tensor \
+        of shape CxHxW, but length of input tensor is {}.".format(len(image_tensor.shape))
     writer.add_image(tag=tag, img_tensor=image_tensor, global_step=global_step, dataformats=dataformats)
 
 def show_images(
@@ -59,7 +60,8 @@ def show_images(
     * `global_step (int)`:
         * Step number at which the image was logged.    
     """
-    assert len(image_tensor.shape) == 4, "show_images() can only be used with an input tensor of shape NxCxHxW, but length of input tensor is {}.".format(len(image_tensor.shape))
+    assert len(image_tensor.shape) == 4, "show_images() can only be used with an input tensor \
+          of shape NxCxHxW, but length of input tensor is {}.".format(len(image_tensor.shape))
     writer.add_images(tag=tag, img_tensor=image_tensor, global_step=global_step)
 
 def show_scalar(

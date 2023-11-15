@@ -36,7 +36,8 @@ class A2D2_ds(DataHandler):
         Args:
         
         * `cfg (omegaconf.DictConfig)`:
-            * Hydra based configuration dictionary based on the given configuration .yaml file. **Only the subset cfg object for the dataset is available at this point.**
+            * Hydra based configuration dictionary based on the given configuration .yaml file.
+            **Only the subset cfg object for the dataset is available at this point.**
         """
         super().__init__(cfg)
 
@@ -80,19 +81,27 @@ class A2D2_ds(DataHandler):
         try:
             self.label_format = self.cfg.label_format
             if not (self.label_format in self.acceptable_label_formats):
-                log_warning("The configuration element <label_format> ({}) is given but does not match any of the acceptable formats {}. It will be set to <rgb> and the process will be slow down probably.".format(
+                log_warning("The configuration element <label_format> ({}) is given but does not \
+                             match any of the acceptable formats {}. It will be set to <rgb> and \
+                             the process will be slow down probably.".format(
                     self.label_format, self.acceptable_label_formats
                 ))
                 raise omegaconf.errors.ConfigAttributeError
             if self.label_format == 'index' and self.use_cityscape_format:
                 self.label_format = 'index_cityscape'
-                log_warning("Mismatch in configuration elements. <use_cityscape_format> is used but label_format <index> is suppose to be used as well. In this case label_format is set to <index_cityscape>.") 
+                log_warning("Mismatch in configuration elements. <use_cityscape_format> is used \
+                             but label_format <index> is suppose to be used as well. In this  \
+                             case label_format is set to <index_cityscape>.") 
             if self.label_format == 'index_cityscape' and not self.use_cityscape_format:
                 if not (self.filenames[0][2] is None):
-                    log_warning("Mismatch in configuration elements. <use_cityscape_format> is not set but label_format <index_cityscape> is suppose to be used as well. In this case label_format is set to <index>.") 
+                    log_warning("Mismatch in configuration elements. <use_cityscape_format> is \
+                                 not set but label_format <index_cityscape> is suppose to be  \
+                                 used as well. In this case label_format is set to <index>.") 
                     self.label_format = 'index'
                 else:
-                    log_warning("Mismatch in configuration elements. <use_cityscape_format> is not set but label_format <index_cityscape> is suppose to be used as well. In this case label_format is set to <rgb>.") 
+                    log_warning("Mismatch in configuration elements. <use_cityscape_format> is \
+                                 not set but label_format <index_cityscape> is suppose to be \
+                                 used as well. In this case label_format is set to <rgb>.") 
                     self.label_format = 'rgb'
         except omegaconf.errors.ConfigAttributeError:
             self.label_format = 'rgb'

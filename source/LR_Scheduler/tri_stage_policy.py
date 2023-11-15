@@ -13,7 +13,8 @@ class TriStageLRScheduler(LRScheduler_Base.LearningRateScheduler):
     r"""
     # Tristage learning rate scheduler
     
-    A learning rate schedule policy that first warms up, then holds the value constant and finally exponentially decay the learning rate until it reaches some final value.
+    A learning rate schedule policy that first warms up, then holds the value constant and 
+    finally exponentially decay the learning rate until it reaches some final value.
     """
     def __init__(self,
         optimizer       : torch.optim.Optimizer,

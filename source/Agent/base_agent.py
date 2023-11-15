@@ -145,7 +145,10 @@ class BaseAgent:
         assert not self.model_wrapper._training_active(), \
             "[BaseAgent] Model must be in validation mode when validation process is ongoing!"
 
-        tqdm_batch = tqdm(self.model_wrapper.dataloader_valid, desc="[Validation] Epoch-{}/{}".format(self.idx_epoch, self.cfg.experiment.num_epochs))
+        tqdm_batch = tqdm(
+            iterable=self.model_wrapper.dataloader_valid, 
+            desc="[Validation] Epoch-{}/{}".format(self.idx_epoch, self.cfg.experiment.num_epochs)
+        )
         ## Gradient calculation in validation step is disabled by default.
         with torch.no_grad():
             for i_iter, i_batch in enumerate(tqdm_batch):
@@ -183,49 +186,88 @@ class BaseAgent:
             self.tb_log.close()
 
     def start_train_valid_epoch(self) -> None:
-        r""" **Abstract**: This method is called after a new epoch has started in the training/evaluation process. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called after a new epoch has started in the 
+        training/evaluation process. If not overloaded by custom agent it does nothing. 
+        """
         pass
 
     def start_train_batch(self) -> None:
-        r""" **Abstract**: This method is called before one batch of the current epoch is going to be processed within in the training process. If not overloaded by custom agent it does nothing. """
+        r""" 
+        **Abstract**: This method is called before one batch of the current epoch
+        is going to be processed within in the training process. If not overloaded 
+        by custom agent it does nothing. 
+        """
         pass
 
     def end_train_loss(self) -> None:
-        r""" **Abstract**: This method is called after the batch was fed to the underlying network and the loss was computed. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called after the batch was fed to the 
+        underlying network and the loss was computed. If not overloaded by custom agent 
+        it does nothing.
+        """
         pass
 
     def end_train_optim_param(self) -> None:
-        r""" **Abstract**: This method is called after the optimizer of the ModelWrapper was optimized. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called after the optimizer of the ModelWrapper 
+        was optimized. If not overloaded by custom agent it does nothing.
+        """
         pass
 
     def end_train_epoch(self) -> None:
-        r""" **Abstract**: This method is called after one epoch was finally processed within the training process. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called after one epoch was finally processed within
+        the training process. If not overloaded by custom agent it does nothing.
+        """
         pass
 
     def start_valid_batch(self) -> None:
-        r""" **Abstract**: This method is called before one batch of the current epoch is going to be processed in the validation process. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called before one batch of the current epoch is 
+        going to be processed in the validation process. If not overloaded by custom 
+        agent it does nothing.
+        """
         pass
 
     def end_valid_batch(self) -> None:
-        r""" **Abstract**: This method is called after the batch was fed to the underlying network in the validation process. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called after the batch was fed to the underlying 
+        network in the validation process. If not overloaded by custom agent it does nothing. 
+        """
         pass
 
     def end_valid_epoch(self) -> None:
-        r""" **Abstract**: This method is called after one epoch was finally processed withing the validation/evaluation process. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called after one epoch was finally processed withing 
+        the validation/evaluation process. If not overloaded by custom agent it does nothing. 
+        """
         pass
 
     def finalize_epochs(self) -> None:
-        r""" **Abstract**: This method is called when the last epoch was finally processed. If not overloaded by custom agent it does nothing. """
+        r""" 
+        **Abstract**: This method is called when the last epoch was finally processed. 
+        If not overloaded by custom agent it does nothing. 
+        """
         pass
 
     def start_eval_batch(self) -> None:
-        r""" **Abstract**: This method is called before one batch was fed to the underlying network in the evaluation process. If not overloaded by custom agent it does nothing. """
+        r""" 
+        **Abstract**: This method is called before one batch was fed to the underlying network 
+        in the evaluation process. If not overloaded by custom agent it does nothing. 
+        """
         pass
 
     def end_eval_batch(self) -> None:
-        r""" **Abstract**: This method is called after the batch was fed to the underlying network in the evaluation process. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called after the batch was fed to the underlying network 
+        in the evaluation process. If not overloaded by custom agent it does nothing. 
+        """
         pass
     
     def end_of_evaluation(self) -> None:
-        r""" **Abstract**: This method is called when the evaluation process is finished. If not overloaded by custom agent it does nothing. """
+        r"""
+        **Abstract**: This method is called when the evaluation process is finished. If not 
+        overloaded by custom agent it does nothing. 
+        """
         pass
