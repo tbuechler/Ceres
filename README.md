@@ -28,7 +28,8 @@ This project is work in progress since it will be moved from a private repositor
 
 1. Azure ML connection
 2. Docker containerization
-3. More models and corresponding custom classes that need to be cleared first...
+3. Custom (cuda) kernel operations
+4. More models and corresponding custom classes that need to be cleared first...
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
